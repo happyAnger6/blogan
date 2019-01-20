@@ -1,2 +1,2 @@
-FLASK_APP=app
+FLASK_APP=blogan
 FLASK_ENV=development

@@ -4,3 +4,4 @@ node_modeuls/
 .idea/
 dist/
 __pycache__/
+/sayhello
