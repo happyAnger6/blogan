@@ -1,1 +1,6 @@
 node_modeuls/
+.env
+/helloflask
+.idea/
+dist/
+__pycache__/

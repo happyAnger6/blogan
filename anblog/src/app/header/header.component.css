@@ -1,0 +1,29 @@
+header {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px 0 5px 0;
+  margin: 0;
+  background-color: #bce8f1;
+}
+
+h1.title {
+  text-align: center;
+  color: rgba(81, 13, 70, .4);
+  font-size: 2em;
+}
+
+div.intro {
+  text-align: center;
+  color: #761c19;
+  font-size: 1em;
+}
+
+.head {
+  margin: 5px;
+  padding: 5px;
+}
+
+.head img {
+  border:2px solid #b92c28;
+  width: 100px;
+  height: 100px;
+}

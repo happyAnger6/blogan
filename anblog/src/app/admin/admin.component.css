@@ -1,0 +1,34 @@
+div.main {
+  height: 100%;
+}
+
+div.left-side {
+  border-right: 1px solid #d4d4d4;
+  padding-right: 0;
+}
+
+ul {
+  border-top: 1px solid #d4d4d4;
+}
+li {
+  padding: 5px;
+  list-style-type: none;
+}
+
+li.title {
+  color: #5e5e5e;
+}
+
+li.item {
+  padding-left: 2em;
+  margin-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+li.item:hover {
+  background-color: #b92c28;
+  cursor: pointer;
+}
