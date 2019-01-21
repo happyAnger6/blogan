@@ -1,0 +1,1 @@
+from blogan import mongo

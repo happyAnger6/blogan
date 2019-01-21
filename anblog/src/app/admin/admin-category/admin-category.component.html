@@ -1,3 +1,11 @@
-<ul>
-  <li *ngFor="let category of categories">{{ category.name }}</li>
-</ul>
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <label>
+    名称:
+    <input type="text" formControlName="name">
+  </label>
+  <label>
+    url:
+    <input type="text" formControlName="url">
+  </label>
+  <button type="submit" [disabled]="!categoryForm.valid">添加</button>
+</form>

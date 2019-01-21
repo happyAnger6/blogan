@@ -5,3 +5,4 @@ node_modeuls/
 dist/
 __pycache__/
 /sayhello
+/angular2-json-schema-form

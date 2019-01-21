@@ -1,9 +1,9 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_mongoengine import MongoEngine
 
 app = Flask('blogan')
 app.config.from_pyfile('settings.py')
 
-db = SQLAlchemy(app)
+db = MongoEngine(app)
 
-from blogan import commands
+from blogan import commands, models, views

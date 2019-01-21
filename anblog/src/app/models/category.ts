@@ -1,7 +1,7 @@
 export class Category {
   id: string;
   name: string;
-  parent: string;
+  fater: string;
   type: number;
   url: string;
   children: Array<string>;

@@ -1,7 +1,4 @@
-from flask import Flask
-
-
-app = Flask(__name__)
+from blogan import app
 
 @app.route('/')
 def index():
