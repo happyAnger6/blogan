@@ -1,11 +1,55 @@
-<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
   <label>
-    名称:
-    <input type="text" formControlName="name">
+    First Name:
+    <input type="text" formControlName="firstName">
   </label>
+
   <label>
-    url:
-    <input type="text" formControlName="url">
+    Last Name:
+    <input type="text" formControlName="lastName">
   </label>
-  <button type="submit" [disabled]="!categoryForm.valid">添加</button>
+
+  <div formGroupName="address">
+    <h3>Address</h3>
+
+    <label>
+      Street:
+      <input type="text" formControlName="street">
+    </label>
+
+    <label>
+      City:
+      <input type="text" formControlName="city">
+    </label>
+
+    <label>
+      State:
+      <input type="text" formControlName="state">
+    </label>
+
+    <label>
+      Zip Code:
+      <input type="text" formControlName="zip">
+    </label>
+  </div>
+  <div formArrayName="alias">
+  <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
+
+  <div *ngFor="let address of alias.controls; let i=index">
+    <!-- The repeated alias template -->
+    <label>
+      Alias:
+      <input type="text" [formControlName]="i">
+    </label>
+  </div>
+  </div>
 </form>
+
+<button type="submit" [disabled]="!profileForm.valid">Submit</button>
+<p>
+  Form value: {{ profileForm.value }}
+</p>
+<p>
+  Form status: {{ profileForm.status }}
+</p>

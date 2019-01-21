@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormArray, Validators} from '@angular/forms';
 
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
@@ -11,15 +11,18 @@ import { CategoryService } from '../../services/category.service';
 })
 export class AdminCategoryComponent implements OnInit {
   newCategory: Category;
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    address: new FormGroup({
-      street: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl('')
-    })
+  profileForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: [''],
+    address: this.fb.group({
+      street: [''],
+      city: [''],
+      state: [''],
+      zip: ['']
+    }),
+    alias: this.fb.array([
+      this.fb.control('')
+    ])
   });
   categoryForm = new FormGroup({
     name: new FormControl(''
@@ -28,10 +31,23 @@ export class AdminCategoryComponent implements OnInit {
     ),
   });
   categories: Category[];
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.categoryService.getAllCategories()
       .subscribe(c => this.categories = c);
+  }
+
+  onSubmit() {
+    console.warn(this.profileForm.value);
+  }
+
+  get alias() {
+    return this.profileForm.get('alias') as FormArray;
+  }
+
+  addAlias() {
+    this.alias.push(this.fb.control(''));
   }
 }

@@ -15,6 +15,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
 import { MessagesComponent } from './messages/messages.component';
+import { DynamicFormModelComponent } from './forms/dynamic-form-model/dynamic-form-model.component';
+import { DynamicFormColComponent } from './forms/dynamic-form-col/dynamic-form-col.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MessagesComponent } from './messages/messages.component';
     NoPageComponent,
     HomepageComponent,
     FooterComponent,
-    MessagesComponent
+    MessagesComponent,
+    DynamicFormModelComponent,
+    DynamicFormColComponent
   ],
   imports: [
     BrowserModule,
