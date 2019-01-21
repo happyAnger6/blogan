@@ -6,3 +6,4 @@ dist/
 __pycache__/
 /sayhello
 /angular2-json-schema-form
+/angular2-schema-form-demo

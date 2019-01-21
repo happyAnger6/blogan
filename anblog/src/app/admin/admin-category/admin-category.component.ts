@@ -11,19 +11,32 @@ import { CategoryService } from '../../services/category.service';
 })
 export class AdminCategoryComponent implements OnInit {
   newCategory: Category;
-  profileForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: [''],
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    }),
-    alias: this.fb.array([
-      this.fb.control('')
-    ])
-  });
+  ckeditorContent: string;
+  mySchema = {
+    "properties": {
+      "email": {
+        "type": "string",
+        "description": "email",
+        "format": "email"
+      },
+      "password": {
+        "type": "string",
+        "description": "Password",
+        "widget": "password"
+      },
+      "post":{
+        "type": "string",
+        "description": "content",
+        "widget": "tinymce"
+      },
+      "rememberMe": {
+        "type": "boolean",
+        "default": false,
+        "description": "Remember me"
+      }
+    },
+    "required": ["email","password","rememberMe"]
+  };
   categoryForm = new FormGroup({
     name: new FormControl(''
     ),
@@ -32,22 +45,13 @@ export class AdminCategoryComponent implements OnInit {
   });
   categories: Category[];
   constructor(private categoryService: CategoryService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder
+              ) {
+  }
 
   ngOnInit() {
     this.categoryService.getAllCategories()
       .subscribe(c => this.categories = c);
   }
 
-  onSubmit() {
-    console.warn(this.profileForm.value);
-  }
-
-  get alias() {
-    return this.profileForm.get('alias') as FormArray;
-  }
-
-  addAlias() {
-    this.alias.push(this.fb.control(''));
-  }
 }

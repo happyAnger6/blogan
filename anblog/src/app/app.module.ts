@@ -1,10 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-/* import { JsonSchemaFormModule,
- MaterialDesignFrameworkModule } from 'angular2-json-schema-form'; */
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -32,9 +28,6 @@ import { DynamicFormColComponent } from './forms/dynamic-form-col/dynamic-form-c
   ],
   imports: [
     BrowserModule,
-    FlexLayoutModule,
-  /* MaterialDesignFrameworkModule.forRoot(),
-   JsonSchemaFormModule.forRoot(MaterialDesignFrameworkModule), */
     AdminModule,
     AppRoutingModule
   ],
