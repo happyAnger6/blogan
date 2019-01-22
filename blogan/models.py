@@ -10,3 +10,5 @@ class Category(db.Document):
     url = db.StringField()
     level = db.IntField()
     children = db.ListField(db.ReferenceField(Category))
+
+model_lst = [Category]

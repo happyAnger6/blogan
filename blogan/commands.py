@@ -2,7 +2,7 @@ import click
 from faker import Faker
 
 from blogan import app, db
-from blogan.models import Category
+from blogan.models import Category, model_lst
 
 fake = Faker()
 @app.cli.command()
@@ -11,9 +11,9 @@ def initdb(drop):
     """Initialize the database."""
     if drop:
         click.confirm('This operation will delete the database, do you want to continue?', abort=True)
-        #db.drop_all()
+        for mdl in model_lst:
+            mdl.objects.delete()
         click.echo('Drop tables.')
-    #db.create_all()
     Category.objects.delete()
     root_category = Category(
         name=fake.name(),
