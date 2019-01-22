@@ -6,3 +6,4 @@ flask-sqlalchemy
 faker
 Flask-MongoEngine
 Flask-DebugToolbar
+Flask-WTF
