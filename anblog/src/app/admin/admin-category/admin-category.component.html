@@ -2,13 +2,17 @@
 <p>
   {{value | json}}
 </p>
+<ul>
+  <li *ngFor="let c of categories">{{ c.name }}</li>
+</ul>
+<button (click)="addCategory()">添加新分类</button>
+<!--
 <ckeditor
   [(ngModel)]="ckeditorContent"
   [config]="{uiColor: '#99000'}"
   [readonly]="false"
 debounce="500">
 </ckeditor>
-<!--
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
   <label>

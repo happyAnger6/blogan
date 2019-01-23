@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CKEditorModule } from 'ng2-ckeditor';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     SchemaFormModule.forRoot(),
     CKEditorModule,
+    HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
