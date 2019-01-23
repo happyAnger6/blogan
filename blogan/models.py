@@ -5,10 +5,11 @@ class Category(db.Document):
 
 class Category(db.Document):
     name = db.StringField(required=True)
-    father = db.ReferenceField(Category)
+    father = db.StringField()
     type = db.IntField()
     url = db.StringField()
     level = db.IntField()
-    children = db.ListField(db.ReferenceField(Category))
+    children = db.ListField(db.StringField())
+    flag = db.IntField()
 
 model_lst = [Category]

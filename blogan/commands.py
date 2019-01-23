@@ -16,8 +16,8 @@ def initdb(drop):
         click.echo('Drop tables.')
     Category.objects.delete()
     root_category = Category(
-        name=fake.name(),
-        father=-1,
+        name='root',
+        father='-1',
         type=0,
         url='',
         level=0,
@@ -38,20 +38,23 @@ def forge(count):
     fake = Faker()
     click.echo('Working...')
 
-    root_category = Category.objects(father=-1)
+    root_category = Category.objects.get(name='root')
     for i in range(count):
         name = fake.name()
         category = Category(
             name=name,
-            father=root_category.id,
+            father=str(root_category.id),
             type=0,
             url=name,
             level=1,
-            children=[]
+            children=[],
+            flag=0
         )
         category.save()
+        root_category.children.append(str(category.id))
         #db.session.add(message)
 
+    root_category.save()
     #db.session.commit()
     click.echo('Created %d fake messages.' % count)
 
@@ -67,9 +70,11 @@ def show(collection):
     click.echo('Working...')
 
     count = 0
-    for c in Category.objects():
-        count+=1
-        print(c)
+    r = Category.objects().get(name='root')
+    for child in r.children:
+        c = Category.objects.get(id=child)
+        print(c.name, c.id)
+        count += 1
         #db.session.add(message)
 
     #db.session.commit()

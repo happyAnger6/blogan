@@ -4,6 +4,7 @@ export class Category {
   father: string;
   type: number;
   url: string;
+  level: number;
   children: Array<string>;
   flag: number;
 }
