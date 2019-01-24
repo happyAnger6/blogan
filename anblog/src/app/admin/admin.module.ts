@@ -7,8 +7,12 @@ import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular
 
 import { AdminComponent } from './admin.component';
 import { AdminCategoryComponent } from './admin-category/admin-category.component';
+import { AdminCategoryNewComponent } from './admin-category-new/admin-category-new.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminPostComponent } from './admin-post/admin-post.component';
+import { AdminCommentComponent } from './admin-comment/admin-comment.component';
+import { AdminPostNewComponent } from './admin-post-new/admin-post-new.component';
 
 @NgModule({
   imports: [
@@ -22,7 +26,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   declarations: [
     AdminComponent,
-    AdminCategoryComponent
+    AdminCategoryComponent,
+    AdminCategoryNewComponent,
+    AdminPostComponent,
+    AdminCommentComponent,
+    AdminPostNewComponent
   ],
   providers: [{provide: WidgetRegistry, useClass: DefaultWidgetRegistry}]
 })

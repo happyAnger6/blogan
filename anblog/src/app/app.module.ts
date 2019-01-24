@@ -28,7 +28,7 @@ import { DynamicFormColComponent } from './forms/dynamic-form-col/dynamic-form-c
     FooterComponent,
     MessagesComponent,
     DynamicFormModelComponent,
-    DynamicFormColComponent
+    DynamicFormColComponent,
   ],
   imports: [
     BrowserModule,

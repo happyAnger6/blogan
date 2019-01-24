@@ -6,5 +6,5 @@ export class Category {
   url: string;
   level: number;
   children: Array<string>;
-  flag: number;
+  showFlag: number;
 }

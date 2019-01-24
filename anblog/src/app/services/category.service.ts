@@ -38,6 +38,25 @@ export class CategoryService {
     );
   }
 
+  /** POST: add a new category to the server */
+  addCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(Category_url, category, httpOptions).pipe(
+      tap((category: Category) => this.log(`added category w/ id=${category.id} name=${category.name}`)),
+      catchError(this.handleError<Category>('addCategory'))
+    );
+  }
+
+  /** DELETE: delete the category from the server */
+  deleteCategory(category: Category | string): Observable<Category> {
+    const id = typeof category === 'string' ? category: category.id;
+    const url = `${Category_url}/${id}`;
+
+    return this.http.delete<Category>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Category>('deleteCategory'))
+    );
+  }
+
   updateCategory(category: Category): Observable<any> {
     return this.http.put(Category_url, category, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${category.id}`)),

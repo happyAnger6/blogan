@@ -1,0 +1,72 @@
+{
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "标题"
+    },
+    "category": {
+      "type": "string",
+      "description": "分类",
+      "widget": "select",
+      "oneOf":[
+        {
+          "description": "根",
+          "enum": [
+            "root"
+          ]
+        }
+      ],
+      "default": "根"
+    },
+    "chapter":{
+      "type": "integer",
+      "description": "章",
+      "default": "normal"
+    },
+    "section": {
+      "type": "integer",
+      "description": "节"
+    },
+    "type": {
+      "type": "string",
+      "description": "是否原创",
+      "widget": "radio",
+      "oneOf": [
+        {
+          "description": "原创",
+          "enum": [
+            "original"
+          ]
+        },
+        {
+          "description": "转载",
+          "enum": [
+            "reprint"
+          ]
+        }
+      ],
+      "default": "original"
+    },
+    "showFlag": {
+      "type": "string",
+      "description": "是否显示",
+      "widget": "radio",
+      "oneOf": [
+        {
+          "description": "显示",
+          "enum": [
+            "show"
+          ]
+        },
+        {
+          "description": "不显示",
+          "enum": [
+            "hidden"
+          ]
+        }
+      ],
+      "default": "show"
+    }
+  },
+  "required": [ "title" ]
+}

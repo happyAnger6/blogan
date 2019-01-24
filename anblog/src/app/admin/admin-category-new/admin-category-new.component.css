@@ -1,0 +1,11 @@
+div.content {
+  margin: 2em;
+}
+
+h4 {
+  padding: 1em;
+}
+
+.ng-valid[required],  .ng-valid.required {
+  border-left: 5px solid #491217;
+}
