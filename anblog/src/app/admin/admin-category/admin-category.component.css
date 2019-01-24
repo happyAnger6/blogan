@@ -1,3 +1,7 @@
+li a:hover{
+  cursor: pointer;
+}
+
 div.content {
   margin: 2em;
 }
@@ -9,3 +13,4 @@ h4 {
 .ng-valid[required],  .ng-valid.required {
   border-left: 5px solid #491217;
 }
+

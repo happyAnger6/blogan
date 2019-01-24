@@ -9,39 +9,55 @@ import { AdminCommentComponent } from './admin-comment/admin-comment.component';
 import { AdminPostNewComponent } from './admin-post-new/admin-post-new.component';
 import { AdminCategoryNewComponent } from './admin-category-new/admin-category-new.component';
 
+const categoryRoutes = {
+    path: 'category',
+    component: AdminCategoryComponent,
+    children: [
+      {
+        path: 'new',
+        component: AdminCategoryNewComponent
+      },
+      {
+        path: '',
+        component: AdminCategoryNewComponent
+      }
+    ]
+};
+
+const postRoutes = {
+    path: 'post',
+    component: AdminPostComponent,
+    children: [
+      {
+        path: 'new',
+        component: AdminPostNewComponent
+      },
+      {
+        path: '',
+        component: AdminPostNewComponent
+      }
+    ]
+};
+
+const commentRoutes = {
+    path: 'comment',
+    component: AdminCommentComponent
+};
+
+const defaultRoutes = {
+  path: '',
+  component: AdminPostComponent
+};
+
 const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
     children: [
-      {
-        path: 'category',
-        component: AdminCategoryComponent,
-        children: [
-          {
-            path: 'new',
-            component: AdminCategoryNewComponent
-          }
-        ]
-      },
-      {
-        path: 'post',
-        component: AdminPostComponent,
-        children: [
-          {
-            path: 'new',
-            component: AdminPostNewComponent
-          }
-        ]
-      },
-      {
-        path: 'comment',
-        component: AdminCommentComponent
-      },
-      {
-        path: '',
-        component: AdminPostComponent
-      }
+      categoryRoutes,
+      postRoutes,
+      commentRoutes,
+      defaultRoutes
     ]
   }
 ];
