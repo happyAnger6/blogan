@@ -2,7 +2,7 @@ import click
 from faker import Faker
 
 from blogan import app, db
-from blogan.models import Category, model_lst
+from blogan.models import Category, User, model_lst
 
 fake = Faker()
 @app.cli.command()
@@ -24,6 +24,16 @@ def initdb(drop):
         children=[]
         )
     root_category.save()
+
+    User.objects.delete()
+    admin = User(
+        name='admin',
+        password='admin',
+        type=10,
+        gold=100000
+    )
+    admin.save()
+
     click.echo('Initialized database.')
 
 
