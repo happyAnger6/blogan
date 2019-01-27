@@ -41,14 +41,14 @@ export class CategoryService {
   /** POST: add a new category to the server */
   addCategory(category: Category): Observable<Category> {
     return this.http.post<Category>(Category_url, category, httpOptions).pipe(
-      tap((category: Category) => this.log(`added category w/ id=${category.id} name=${category.name}`)),
+      tap((category: Category) => this.log(`added category w/ id=${category._id} name=${category.name}`)),
       catchError(this.handleError<Category>('addCategory'))
     );
   }
 
   /** DELETE: delete the category from the server */
   deleteCategory(category: Category | string): Observable<Category> {
-    const id = typeof category === 'string' ? category: category.id;
+    const id = typeof category === 'string' ? category: category._id;
     const url = `${Category_url}/${id}`;
 
     return this.http.delete<Category>(url, httpOptions).pipe(
@@ -59,7 +59,7 @@ export class CategoryService {
 
   updateCategory(category: Category): Observable<any> {
     return this.http.put(Category_url, category, httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${category.id}`)),
+      tap(_ => this.log(`updated hero id=${category._id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }

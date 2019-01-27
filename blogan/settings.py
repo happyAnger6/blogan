@@ -7,5 +7,6 @@ MONGODB_SETTINGS = {
     'port': 27017
 }
 
+WTF_CSRF_ENABLED=False
 DEBUG_TB_PANELS = 'flask_mongoengine.panels.MongoDebugPanel'
 SECRET_KEY = os.getenv('SECRET_KEY', 'blogan')

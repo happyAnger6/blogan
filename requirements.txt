@@ -7,3 +7,4 @@ faker
 Flask-MongoEngine
 Flask-DebugToolbar
 Flask-WTF
+flask-cors

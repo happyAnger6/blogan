@@ -54,17 +54,23 @@ export class AdminCategoryNewComponent implements OnInit {
     return 0;
   }
 
+  getCategoryIdByName(categories: Category[], name: string): string{
+    for (let c of categories) {
+      if (c.name == name)
+        return c._id;
+    }
+  }
+
   val2category(value:any, category: Category) {
     category.name = value.name;
     category.type = this.iType2ModelType(value.type);
-    category.father = value.father;
+    category.father = this.getCategoryIdByName(this.categories, value.father);
     category.url = value.url;
     category.level = value.level;
     category.showFlag = this.iFlag2ModelFlag(value.flag);
   }
 
   addCategory(value: any) {
-    console.log(value);
     this.val2category(value, this.newCategory);
     this.categoryService.addCategory(this.newCategory)
       .subscribe(category => {
