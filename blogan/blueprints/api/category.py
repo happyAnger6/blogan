@@ -15,12 +15,14 @@ def category():
     elif request.method == 'POST':
         category_form = model_form(Category)
         json_data = request.json
-        json_data.update({'father': ObjectId(json_data['father']['$oid'])})
+        json_data.update({'father': json_data['father']['$oid']})
         form = category_form(json2formdata(json_data))
         if form.validate():
             new_category=Category(**form.data)
-            new_category.save()
-            print(new_category)
+            try:
+                new_category.save()
+            except Exception as e:
+                return jsonify({'errormsg:': str(e)}), 500
             return jsonify(new_category)
         else:
             return jsonify(form.errors), 400

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs/index';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError, of } from 'rxjs/index';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { catchError, map, tap } from 'rxjs/internal/operators';
 import { Category } from '../models/category';
@@ -26,23 +26,23 @@ export class CategoryService {
     return this.http.get<Category[]>(Category_url)
       .pipe(
         tap(_ => this.log('fetched categories.')),
-        catchError(this.handleError('getAllCategories', []))
+        catchError(this.handleError)
       );
   }
 
-  getCategory(id: number): Observable<Category> {
+  getCategory(id: string): Observable<Category> {
     const url = `${Category_url}/${id}`;
     return this.http.get<Category>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Category>(`getHero id=${id}`))
+      tap(_ => this.log(`fetched category id=${id}`)),
+      catchError(this.handleError)
     );
   }
 
   /** POST: add a new category to the server */
   addCategory(category: Category): Observable<Category> {
     return this.http.post<Category>(Category_url, category, httpOptions).pipe(
-      tap((category: Category) => this.log(`added category w/ id=${category._id} name=${category.name}`)),
-      catchError(this.handleError<Category>('addCategory'))
+      tap((category: Category) => this.log(`added category name=${category.name}`)),
+      catchError(this.handleError)
     );
   }
 
@@ -53,15 +53,35 @@ export class CategoryService {
 
     return this.http.delete<Category>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Category>('deleteCategory'))
+      catchError(this.handleError)
     );
   }
 
   updateCategory(category: Category): Observable<any> {
     return this.http.put(Category_url, category, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${category._id}`)),
-      catchError(this.handleError<any>('updateHero'))
+      catchError(this.handleError)
     );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An client error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+         let errmsg: string = `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`;
+        console.error(errmsg);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+  private log(message:string) {
+    this.messageService.add(message);
   }
   /**
    * Handle Http operation that failed.
@@ -69,6 +89,7 @@ export class CategoryService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
+  /*
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -81,9 +102,6 @@ export class CategoryService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
+  }*/
 
-  private log(message:string) {
-    this.messageService.add(message);
-  }
 }
