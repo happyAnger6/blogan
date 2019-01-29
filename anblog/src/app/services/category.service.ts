@@ -26,23 +26,25 @@ export class CategoryService {
     return this.http.get<Category[]>(Category_url)
       .pipe(
         tap(_ => this.log('fetched categories.')),
-        catchError(this.handleError)
+        catchError(this.handleError<Category[]>('get all categories'))
       );
   }
 
   getCategory(id: string): Observable<Category> {
     const url = `${Category_url}/${id}`;
-    return this.http.get<Category>(url).pipe(
+    return this.http.get<Category>(url)
+      .pipe(
       tap(_ => this.log(`fetched category id=${id}`)),
-      catchError(this.handleError)
+      catchError(this.handleError<Category>('get category'))
     );
   }
 
   /** POST: add a new category to the server */
   addCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(Category_url, category, httpOptions).pipe(
+    return this.http.post<Category>(Category_url, category, httpOptions)
+      .pipe(
       tap((category: Category) => this.log(`added category name=${category.name}`)),
-      catchError(this.handleError)
+      catchError(this.handleError<Category>('add Category'))
     );
   }
 
@@ -51,19 +53,21 @@ export class CategoryService {
     const id = typeof category === 'string' ? category: category._id;
     const url = `${Category_url}/${id}`;
 
-    return this.http.delete<Category>(url, httpOptions).pipe(
+    return this.http.delete<Category>(url, httpOptions)
+      .pipe(
       tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError)
+      catchError(this.handleError<Category>('delete category'))
     );
   }
 
-  updateCategory(category: Category): Observable<any> {
-    return this.http.put(Category_url, category, httpOptions).pipe(
+  updateCategory(category: Category): Observable<Category> {
+    return this.http.put<Category>(Category_url, category, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${category._id}`)),
-      catchError(this.handleError)
+      catchError(this.handleError<Category>('update category'))
     );
   }
 
+  /*
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -79,7 +83,7 @@ export class CategoryService {
     return throwError(
       'Something bad happened; please try again later.');
   };
-
+*/
   private log(message:string) {
     this.messageService.add(message);
   }
@@ -89,19 +93,36 @@ export class CategoryService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  /*
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      if(error instanceof  HttpErrorResponse) {
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An client error occurred:', error.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          let errmsg: string = `${operation} failed: Server returned code ${error.status}, ` +
+            `body was: ${error.error}`;
+          console.error(errmsg);
+          this.log(errmsg);
+        }
+        // return an observable with a user-facing error message
+        return throwError(
+          'Something bad happened; please try again later.');
+      }
+      else {
+        // TODO: send the error to remote logging infrastructure
+        console.error(error); // log to console instead
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+        // TODO: better job of transforming error for user consumption
+        this.log(`${operation} failed: ${error.message}`);
 
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
+        // Let the app keep running by returning an empty result.
+        return of(result as T);
+      }
     };
-  }*/
+  }
 
 }
