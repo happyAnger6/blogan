@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs/index';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
 
 import { catchError, map, tap } from 'rxjs/internal/operators';
 import { Category } from '../models/category';
@@ -10,8 +10,13 @@ import { MessageService } from './message.service';
 
 import { Category_url } from '../api_endpoint';
 
+const httpOptions1 = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  observe: "response" as "response"
+};
+
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
@@ -41,9 +46,10 @@ export class CategoryService {
 
   /** POST: add a new category to the server */
   addCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(Category_url, category, httpOptions)
+    return this.http.post<Category>(Category_url, category, httpOptions1)
       .pipe(
-      tap((category: Category) => this.log(`added category name=${category.name}`)),
+      tap(resp => { this.log(`added category resp=${resp.body}`)} ),
+      map(resp => resp.body),
       catchError(this.handleError<Category>('add Category'))
     );
   }
