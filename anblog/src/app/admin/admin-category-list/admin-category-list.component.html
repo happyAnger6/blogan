@@ -1,0 +1,10 @@
+<ul class="category-list list-group">
+  <li class="category-header list-group-item">
+  <div class="c-name">名称</div>
+  <div class="c-url">url</div>
+  <div class="c-oper">操作</div>
+  </li>
+  <li class="category-item list-group-item" *ngFor="let category of categories">
+    <app-admin-category-item [category]="category"></app-admin-category-item>
+  </li>
+  </ul>

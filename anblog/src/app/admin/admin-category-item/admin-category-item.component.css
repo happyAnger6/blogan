@@ -1,0 +1,15 @@
+div {
+  display: inline;
+}
+
+div.category-url {
+  margin-left: 10em;
+  text-align: center;
+  width: 3em;
+}
+
+div.operator {
+  margin-left: 15em;
+  text-align: center;
+  width: 5em;
+}

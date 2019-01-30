@@ -8,6 +8,7 @@ import { AdminPostComponent } from './admin-post/admin-post.component';
 import { AdminCommentComponent } from './admin-comment/admin-comment.component';
 import { AdminPostNewComponent } from './admin-post-new/admin-post-new.component';
 import { AdminCategoryNewComponent } from './admin-category-new/admin-category-new.component';
+import { AdminCategoryListComponent } from './admin-category-list/admin-category-list.component';
 
 const categoryRoutes = {
     path: 'category',
@@ -16,6 +17,10 @@ const categoryRoutes = {
       {
         path: 'new',
         component: AdminCategoryNewComponent
+      },
+      {
+        path: 'list',
+        component: AdminCategoryListComponent
       },
       {
         path: '',

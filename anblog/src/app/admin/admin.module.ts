@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminPostComponent } from './admin-post/admin-post.component';
 import { AdminCommentComponent } from './admin-comment/admin-comment.component';
 import { AdminPostNewComponent } from './admin-post-new/admin-post-new.component';
+import { AdminCategoryListComponent } from './admin-category-list/admin-category-list.component';
+import { AdminCategoryItemComponent } from './admin-category-item/admin-category-item.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import { AdminPostNewComponent } from './admin-post-new/admin-post-new.component
     AdminCategoryNewComponent,
     AdminPostComponent,
     AdminCommentComponent,
-    AdminPostNewComponent
+    AdminPostNewComponent,
+    AdminCategoryListComponent,
+    AdminCategoryItemComponent
   ],
   providers: [{provide: WidgetRegistry, useClass: DefaultWidgetRegistry}]
 })

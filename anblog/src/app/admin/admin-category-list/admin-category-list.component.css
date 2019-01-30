@@ -1,0 +1,20 @@
+div.category-list {
+  margin-left: 1em;
+}
+
+li div{
+  display: inline;
+}
+
+.category-header .c-name {
+
+}
+
+.category-header .c-url {
+  margin-left: 10em;
+}
+
+.category-header .c-oper {
+  margin-left: 15em;
+}
+
