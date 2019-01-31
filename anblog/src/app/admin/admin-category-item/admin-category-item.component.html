@@ -1,6 +1,16 @@
-<div class="category-name">{{ category.name }}</div>
+<div class="category-name">
+<input type="text" [(ngModel)]="category.name" [disabled]="!editFlag">
+
+<div>
+<a [hidden]="!editFlag" (click)="onSave()">保存</a>
+<a [hidden]="!editFlag" (click)="onCancel()">取消</a>
+</div>
+
+</div>
+
 <div class="category-url">{{ category.url}}</div>
+
 <div class="operator">
-  <button type="button" class="btn-default">编辑</button>
-  <button type="button" class="btn-default">删除</button>
+  <button type="button" class="btn-default" (click)="onEdit()">编辑</button>
+  <button type="button" class="btn-default" (click)="onDelete()">删除</button>
 </div>

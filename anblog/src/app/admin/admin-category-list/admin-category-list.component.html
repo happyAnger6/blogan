@@ -5,6 +5,6 @@
   <div class="c-oper">操作</div>
   </li>
   <li class="category-item list-group-item" *ngFor="let category of categories">
-    <app-admin-category-item [category]="category"></app-admin-category-item>
+    <app-admin-category-item [category]="category" (deleteFlag)="onDeleteItem($event)"></app-admin-category-item>
   </li>
   </ul>

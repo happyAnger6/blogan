@@ -27,8 +27,9 @@ def category():
         else:
             return jsonify(form.errors), 400
 
-@api_bp.route('/category/<string:category_id>', methods = [ 'GET', 'PUT' ])
+@api_bp.route('/category/<string:category_id>', methods = [ 'GET', 'PUT', 'DELETE'])
 def category_post(category_id):
+    print('delete', category_id, request.method)
     if request.method == 'GET':
         category = Category.objects(id=category_id)
         return jsonify(category)
@@ -42,3 +43,7 @@ def category_post(category_id):
             return 'success.'
         else:
             return 'failed.'
+    elif request.method == 'DELETE':
+        category = Category.objects(id=category_id).get_or_404()
+        category.delete()
+        return jsonify('success.')

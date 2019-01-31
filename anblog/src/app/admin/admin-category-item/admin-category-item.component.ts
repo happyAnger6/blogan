@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
@@ -10,11 +10,33 @@ import { CategoryService } from '../../services/category.service';
 })
 export class AdminCategoryItemComponent implements OnInit {
   @Input() category: Category;
+  @Output() deleteFlag: EventEmitter<string> = new EventEmitter();
+  editFlag: boolean = false;
   constructor(
     private categoryService: CategoryService
   ) { }
 
   ngOnInit() {
+  }
+
+  onEdit() {
+    this.editFlag = true;
+  }
+
+  onDelete() {
+    this.editFlag = false;
+    let _id: string = this.category._id;
+    this.categoryService.deleteCategory(this.category)
+      .subscribe(c => {
+        this.deleteFlag.emit(_id);
+      });
+  }
+  onSave() {
+    this.editFlag = false;
+  }
+
+  onCancel() {
+    this.editFlag = false;
   }
 
 }

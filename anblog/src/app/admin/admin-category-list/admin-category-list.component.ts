@@ -19,4 +19,8 @@ export class AdminCategoryListComponent implements OnInit {
       });
   }
 
+  onDeleteItem(c_id: string) {
+    this.categories = this.categories.filter(item => item._id != c_id);
+  }
+
 }
