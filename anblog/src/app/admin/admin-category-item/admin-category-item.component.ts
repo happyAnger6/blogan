@@ -25,7 +25,8 @@ export class AdminCategoryItemComponent implements OnInit {
 
   onDelete() {
     this.editFlag = false;
-    let _id: string = this.category._id;
+    console.log(this.category._id);
+    let _id: string = this.category._id.$oid;
     this.categoryService.deleteCategory(this.category)
       .subscribe(c => {
         this.deleteFlag.emit(_id);

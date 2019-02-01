@@ -57,7 +57,7 @@ export class AdminCategoryNewComponent implements OnInit {
   getCategoryIdByName(categories: Category[], name: string): string{
     for (let c of categories) {
       if (c.name == name)
-        return c._id;
+        return c._id.$oid;
     }
   }
 

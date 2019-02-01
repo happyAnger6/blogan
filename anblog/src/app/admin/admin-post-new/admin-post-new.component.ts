@@ -4,6 +4,7 @@ import { Post } from '../../models/post';
 import { Category } from '../../models/category';
 import { PostService } from '../../services/post.service';
 import { CategoryService } from '../../services/category.service';
+import {ObjectId} from "../../models/objectid";
 
 @Component({
   selector: 'app-admin-post-new',
@@ -40,12 +41,21 @@ export class AdminPostNewComponent implements OnInit {
       });
   }
 
+  findCategoryIdByName(name: string): string {
+    for (let c of this.categories) {
+      if (c.name == name) {
+        return c._id.$oid;
+      }
+    }
+  }
+
   val2post(value:any, content:any, post: Post) {
     post.title = value.title;
     post.type = this.iType2ModelType(value.type);
     post.content = content;
     post.showFlag = this.iFlag2ModelFlag(value.showFlag);
-    post.category = value.category;
+    post.category = this.findCategoryIdByName(value.category);
+    post.author = "admin";
   }
 
   iType2ModelType(t: string): number{
@@ -62,6 +72,7 @@ export class AdminPostNewComponent implements OnInit {
 
   addPost(val, content) {
     this.val2post(val, content, this.newPost);
-    console.log(this.newPost);
+    this.postService.addPost(this.newPost)
+      .subscribe();
   }
 }

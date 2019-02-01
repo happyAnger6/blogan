@@ -1,5 +1,7 @@
+import { ObjectId } from './objectid';
+
 export class Post{
-  id: string;
+  _id: ObjectId;
   title: string;
   content: string;
   category: string;

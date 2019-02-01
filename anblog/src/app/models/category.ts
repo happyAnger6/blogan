@@ -1,5 +1,7 @@
+import { ObjectId } from './objectid';
+
 export class Category {
-  _id: string;
+  _id: ObjectId;
   name: string;
   father: string;
   type: number;

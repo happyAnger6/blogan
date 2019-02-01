@@ -15,7 +15,6 @@ def category():
     elif request.method == 'POST':
         category_form = model_form(Category)
         json_data = request.json
-        json_data.update({'father': json_data['father']['$oid']})
         form = category_form(json2formdata(json_data))
         if form.validate():
             new_category=Category(**form.data)
