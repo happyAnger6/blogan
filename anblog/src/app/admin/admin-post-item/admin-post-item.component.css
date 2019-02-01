@@ -1,5 +1,6 @@
 .post-item {
   border-bottom: 1px solid #d4d4d4;
+  padding: 10px;
 }
 
 .post-item h4 {
@@ -30,4 +31,8 @@
 
 .info-box {
   display: inline;
+}
+
+.info-box a {
+  margin-left: 10px;
 }

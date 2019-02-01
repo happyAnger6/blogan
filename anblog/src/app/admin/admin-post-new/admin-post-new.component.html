@@ -1,7 +1,1 @@
-<h5>内容:</h5>
-<ckeditor [(ngModel)]="postContent"></ckeditor>
-<sf-form [schema]="postSchema" (onChange)="value=$event.value"></sf-form>
-<p>
-  {{value | json}}
-</p>
-<button (click)="addPost(value, postContent)">添加新文章</button>
+<app-admin-post-eidt [post]="newPost"></app-admin-post-eidt>

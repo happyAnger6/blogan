@@ -4,7 +4,7 @@
   <span class='post-type-1' *ngIf="post.type==1">转</span>
   {{ post.title }}
 </h4>
-<p [innerHTML]="post.content" class="content"></p>
+<p [innerHTML]="post.content | slice:0:200" class="content"></p>
 
 <div class="info-box">
   <p><span class="post-date">{{ post.publish_data.$date | date:'yyyy-MM-dd HH:mm:ss' }}</span></p>

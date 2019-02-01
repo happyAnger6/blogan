@@ -17,6 +17,7 @@ import { AdminCategoryListComponent } from './admin-category-list/admin-category
 import { AdminCategoryItemComponent } from './admin-category-item/admin-category-item.component';
 import { AdminPostListComponent } from './admin-post-list/admin-post-list.component';
 import { AdminPostItemComponent } from './admin-post-item/admin-post-item.component';
+import { AdminPostEidtComponent } from './admin-post-eidt/admin-post-eidt.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { AdminPostItemComponent } from './admin-post-item/admin-post-item.compon
     AdminCategoryListComponent,
     AdminCategoryItemComponent,
     AdminPostListComponent,
-    AdminPostItemComponent
+    AdminPostItemComponent,
+    AdminPostEidtComponent
   ],
   providers: [{provide: WidgetRegistry, useClass: DefaultWidgetRegistry}]
 })
