@@ -1,6 +1,10 @@
-<ul class="post-lists">
-  <li *ngFor="let post of posts">
-    {{ post.title }}
-    {{ post.content }}
-  </li>
-</ul>
+<div class="post-lists">
+  <div *ngFor="let post of posts" class="post-item" (blur)="onBlur(post)">
+    <h4>
+      <span *ngIf="post.type==0">原</span>
+      <span *ngIf="post.type==1">转</span>
+      {{ post.title }}
+    </h4>
+    <p [innerHTML]="post.content"></p>
+  </div>
+</div>

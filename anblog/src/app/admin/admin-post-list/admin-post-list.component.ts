@@ -23,4 +23,8 @@ export class AdminPostListComponent implements OnInit {
       })
   }
 
+  onBlur(post: Post) {
+    console.log('onBlur', post.title);
+  }
+
 }
