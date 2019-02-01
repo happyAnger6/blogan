@@ -27,3 +27,7 @@
   font-size: 14px;
   color: #999;
 }
+
+.info-box {
+  display: inline;
+}
