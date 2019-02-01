@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 
@@ -9,7 +8,7 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./admin-post-list.component.css']
 })
 export class AdminPostListComponent implements OnInit {
-
+  enterFlag: boolean = false;
   posts: Post[];
   constructor(
     private postService: PostService
@@ -23,8 +22,13 @@ export class AdminPostListComponent implements OnInit {
       })
   }
 
-  onBlur(post: Post) {
-    console.log('onBlur', post.title);
+  onBlur(enter: boolean, post: Post) {
+    if (enter) {
+      console.log('enter');
+    }
+    else {
+      console.log('leave');
+    }
   }
 
 }

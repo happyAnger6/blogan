@@ -1,0 +1,14 @@
+<div class="post-item" (mouseenter)="mouseEnter(true)" (mouseleave)="mouseEnter(false)">
+<h4>
+  <span class='post-type-0' *ngIf="post.type==0">原</span>
+  <span class='post-type-1' *ngIf="post.type==1">转</span>
+  {{ post.title }}
+</h4>
+<p [innerHTML]="post.content" class="content"></p>
+
+<div class="info-box">
+  <p><span class="post-date">{{ post.publish_data.$date | date:'yyyy-MM-dd HH:mm:ss' }}</span></p>
+  <a *ngIf="enterFlag">编辑</a>
+  <a *ngIf="enterFlag">删除</a>
+</div>
+</div>

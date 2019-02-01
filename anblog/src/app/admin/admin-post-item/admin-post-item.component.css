@@ -1,0 +1,29 @@
+.post-item {
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.post-item h4 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #3d3d3d;
+}
+
+.post-item:hover{
+  background-color: #b9def0;
+  cursor: pointer;
+}
+
+.post-item span.post-type-0 {
+  color: #ca6c16;
+  border: 1px solid #f4ced0;
+}
+
+.post-item span.post-type-1 {
+  color: #86ca5e;
+  border: 1px solid #e7f4df;
+}
+
+.post-item p.content {
+  font-size: 14px;
+  color: #999;
+}

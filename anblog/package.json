@@ -22,6 +22,7 @@
     "angular-in-memory-web-api": "^0.8.0",
     "angular2-schema-form": "^1.2.3",
     "core-js": "^2.5.4",
+    "moment": "^2.24.0",
     "ng2-ckeditor": "^1.2.2",
     "ng2sf-tinymce": "^1.0.7",
     "rxjs": "~6.3.3",
