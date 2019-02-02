@@ -6,11 +6,11 @@ import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
-  selector: 'app-admin-post-eidt',
-  templateUrl: './admin-post-eidt.component.html',
-  styleUrls: ['./admin-post-eidt.component.css']
+  selector: 'app-admin-post-edit',
+  templateUrl: './admin-post-edit.component.html',
+  styleUrls: ['./admin-post-edit.component.css']
 })
-export class AdminPostEidtComponent implements OnInit {
+export class AdminPostEditComponent implements OnInit {
   postSchema = require('./edit_post_form.json');
   postContent: string;
   @Input() post: Post = null;

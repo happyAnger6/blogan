@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminPostEidtComponent } from './admin-post-eidt.component';
+import { CategoryMenuComponent } from './category-menu.component';
 
-describe('AdminPostEidtComponent', () => {
-  let component: AdminPostEidtComponent;
-  let fixture: ComponentFixture<AdminPostEidtComponent>;
+describe('CategoryMenuComponent', () => {
+  let component: CategoryMenuComponent;
+  let fixture: ComponentFixture<CategoryMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminPostEidtComponent ]
+      declarations: [ CategoryMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminPostEidtComponent);
+    fixture = TestBed.createComponent(CategoryMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

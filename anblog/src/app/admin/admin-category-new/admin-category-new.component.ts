@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
+import { ObjectId } from '../../models/objectid';
 
 @Component({
   selector: 'app-admin-category-new',
@@ -54,10 +55,10 @@ export class AdminCategoryNewComponent implements OnInit {
     return 0;
   }
 
-  getCategoryIdByName(categories: Category[], name: string): string{
+  getCategoryIdByName(categories: Category[], name: string): ObjectId{
     for (let c of categories) {
       if (c.name == name)
-        return c._id.$oid;
+        return c._id;
     }
   }
 

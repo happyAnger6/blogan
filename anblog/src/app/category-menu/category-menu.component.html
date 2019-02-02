@@ -1,0 +1,7 @@
+<div (mouseleave)="onUnSelect()" (mouseenter)="onSelect()">
+<button type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ category.name }}</button>
+  <ul class="dropdown-menu" *ngIf="selectFlag">
+    <li *ngFor="let c of subCategories"><a href="#">{{ c.name }}</a></li>
+  </ul>
+ </div>

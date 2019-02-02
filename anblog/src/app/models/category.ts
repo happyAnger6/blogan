@@ -3,7 +3,7 @@ import { ObjectId } from './objectid';
 export class Category {
   _id: ObjectId;
   name: string;
-  father: string;
+  father: ObjectId;
   type: number;
   url: string;
   level: number;

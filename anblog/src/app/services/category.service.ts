@@ -27,6 +27,30 @@ export class CategoryService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
+    getAllSubCategories(categories: Category[], father: Category): Observable<Category[]> {
+    let cates: Category[] = [];
+    for (let c of categories) {
+      if (c.name == 'root')
+        continue;
+      if (c.father.$oid == father._id.$oid) {
+        cates.push(c)
+      }
+    }
+    return of(cates);
+  }
+
+  getAllCategoriesByLevel(categories: Category[], level: number): Observable<Category[]> {
+    let cates: Category[] = [];
+    for (let c of categories) {
+      if (c.name == 'root')
+        continue;
+      if (c.level == level) {
+        cates.push(c)
+      }
+    }
+    return of(cates);
+  }
+
   getAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(Category_url)
       .pipe(

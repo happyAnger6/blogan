@@ -1,0 +1,9 @@
+div {
+  display: inline;
+}
+
+button {
+  background-color: #b9def0;
+  width: 6em;
+  height: 3em;
+}

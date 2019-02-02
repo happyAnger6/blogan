@@ -17,6 +17,7 @@ import { AdminModule } from './admin/admin.module';
 import { MessagesComponent } from './messages/messages.component';
 import { DynamicFormModelComponent } from './forms/dynamic-form-model/dynamic-form-model.component';
 import { DynamicFormColComponent } from './forms/dynamic-form-col/dynamic-form-col.component';
+import { CategoryMenuComponent } from './category-menu/category-menu.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DynamicFormColComponent } from './forms/dynamic-form-col/dynamic-form-c
     MessagesComponent,
     DynamicFormModelComponent,
     DynamicFormColComponent,
+    CategoryMenuComponent,
   ],
   imports: [
     BrowserModule,

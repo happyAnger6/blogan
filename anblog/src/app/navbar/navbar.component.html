@@ -1,5 +1,14 @@
-<ul class="nav nav-pills">
-  <li role="presentation"><a routerLink="/" routerLinkActive="active">Home</a></li>
-  <li role="presentation"><a routerLink="/" routerLinkActive="active">Message</a></li>
-  <li role="presentation"><a routerLink="/admin" routerLinkActive="active">管理页面</a></li>
-</ul>
+<div class="navs-menu">
+
+  <div class="home-menu btn-group">
+  <button type="button" class="btn btn-default"  routerLink="/" routerLinkActive="active">Home</button>
+  </div>
+
+  <div class="category-menu btn-group" *ngFor="let c of topCategories">
+  <app-category-menu [category]="c" [allCategories]="allCategories"></app-category-menu>
+  </div>
+
+  <div class="admin-menu btn-group">
+  <button type="button" class="btn btn-default"  routerLink="/admin" routerLinkActive="active">管理页面</button>
+  </div>
+</div>
