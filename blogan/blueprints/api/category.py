@@ -15,6 +15,7 @@ def category():
     elif request.method == 'POST':
         category_form = model_form(Category)
         json_data = request.json
+        json_data.update({'father': json_data['father']['$oid']});
         form = category_form(json2formdata(json_data))
         if form.validate():
             new_category=Category(**form.data)
@@ -28,20 +29,21 @@ def category():
 
 @api_bp.route('/category/<string:category_id>', methods = [ 'GET', 'PUT', 'DELETE'])
 def category_post(category_id):
-    print('delete', category_id, request.method)
     if request.method == 'GET':
         category = Category.objects(id=category_id)
         return jsonify(category)
     elif request.method == 'PUT':
         category_form = model_form(Category)
-        form = category_form(request.form)
+        json_data = request.json
+        json_data.update({'father': json_data['father']['$oid']});
+        form = category_form(json2formdata(json_data))
         if form.validate():
             category = Category.objects(id=category_id).get_or_404()
             category.update(**form.data)
             category.save()
-            return 'success.'
+            return jsonify('success.')
         else:
-            return 'failed.'
+            return jsonify('failed.')
     elif request.method == 'DELETE':
         category = Category.objects(id=category_id).get_or_404()
         category.delete()

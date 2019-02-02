@@ -1,6 +1,5 @@
 <div class="category-name">
 <input type="text" [(ngModel)]="category.name" [disabled]="!editFlag">
-
 <div>
 <a [hidden]="!editFlag" (click)="onSave()">保存</a>
 <a [hidden]="!editFlag" (click)="onCancel()">取消</a>
@@ -9,6 +8,9 @@
 </div>
 
 <div class="category-url">{{ category.url}}</div>
+<div class="category-level">
+  <input type="text" [(ngModel)]="category.level" [disabled]="!editFlag">
+  <div>
 
 <div class="operator">
   <button type="button" class="btn-default" (click)="onEdit()">编辑</button>

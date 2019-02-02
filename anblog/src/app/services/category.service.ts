@@ -91,7 +91,9 @@ export class CategoryService {
   }
 
   updateCategory(category: Category): Observable<Category> {
-    return this.http.put<Category>(Category_url, category, httpOptions).pipe(
+    const id = typeof category === 'string' ? category: category._id.$oid;
+    const url = `${Category_url}/${id}`;
+    return this.http.put<Category>(url, category, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${category._id.$oid}`)),
       catchError(this.handleError<Category>('update category'))
     );

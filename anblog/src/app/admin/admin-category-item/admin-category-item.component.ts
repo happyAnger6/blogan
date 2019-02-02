@@ -34,6 +34,8 @@ export class AdminCategoryItemComponent implements OnInit {
   }
   onSave() {
     this.editFlag = false;
+    this.categoryService.updateCategory(this.category)
+      .subscribe();
   }
 
   onCancel() {

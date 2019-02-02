@@ -2,14 +2,23 @@ div {
   display: inline;
 }
 
+div.category-name {
+  width: 5em;
+}
+
 div.category-url {
-  margin-left: 10em;
+  margin-left: 15em;
   text-align: center;
-  width: 3em;
+  width: 8em;
+}
+
+div.category-level {
+  margin-left: 5em;
+  width: 2em;
 }
 
 div.operator {
-  margin-left: 15em;
+  margin-left: 5em;
   text-align: center;
-  width: 5em;
+  width: 6em;
 }
