@@ -8,27 +8,32 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./admin-post-list.component.css']
 })
 export class AdminPostListComponent implements OnInit {
-  enterFlag: boolean = false;
+  editFlag: boolean = false;
   posts: Post[];
+  editPost: Post;
   constructor(
     private postService: PostService
   ) { }
 
-  ngOnInit() {
-    console.log('aaaa');
+  updateData() {
     this.postService.getAllPosts()
       .subscribe(posts => {
         this.posts = posts;
-      })
+      });
   }
 
-  onBlur(enter: boolean, post: Post) {
-    if (enter) {
-      console.log('enter');
-    }
-    else {
-      console.log('leave');
-    }
+  ngOnInit() {
+    this.updateData();
+  }
+
+  onOper(oper:number, post:Post) {
+    this.editFlag = true;
+    this.editPost = post;
+    console.log(oper, post.title);
+  }
+
+  onEditResult(oper:number) {
+    this.editFlag = false;
   }
 
 }

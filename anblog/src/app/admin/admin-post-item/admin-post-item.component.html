@@ -8,7 +8,7 @@
 
 <div class="info-box">
   <p><span class="post-date">{{ post.publish_data.$date | date:'yyyy-MM-dd HH:mm:ss' }}</span></p>
-  <a *ngIf="enterFlag">编辑</a>
-  <a *ngIf="enterFlag">删除</a>
+  <a *ngIf="enterFlag" (click)="onEdit()">编辑</a>
+  <a *ngIf="enterFlag" (click)="onDelete()">删除</a>
 </div>
 </div>

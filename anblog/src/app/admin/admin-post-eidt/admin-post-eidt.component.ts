@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
@@ -13,7 +13,8 @@ import { CategoryService } from '../../services/category.service';
 export class AdminPostEidtComponent implements OnInit {
   postSchema = require('./edit_post_form.json');
   postContent: string;
-  @Input() post: Post;
+  @Input() post: Post = null;
+  @Output() editFlag = new EventEmitter<number>();
   categories: Category[];
 
   constructor(private postService: PostService,
@@ -29,8 +30,11 @@ export class AdminPostEidtComponent implements OnInit {
         ]
       })
     };
-    this.postSchema.properties.category.oneOf = postArray;
-    this.postSchema.properties.title = this.post.title;
+
+    if (this.post) {
+      this.postSchema.properties.category.oneOf = postArray;
+      this.postSchema.properties.title.value = this.post.title;
+    }
   }
 
   ngOnInit() {
@@ -74,6 +78,11 @@ export class AdminPostEidtComponent implements OnInit {
     this.val2post(val, content, this.post);
     this.postService.addPost(this.post)
       .subscribe();
+    this.editFlag.emit(1);
+  }
+
+  onCancel(val) {
+    this.editFlag.emit(0);
   }
 
 }
