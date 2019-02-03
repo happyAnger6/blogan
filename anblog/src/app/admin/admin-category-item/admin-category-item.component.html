@@ -1,6 +1,6 @@
 <div class="category-name">
 <input type="text" [(ngModel)]="category.name" [disabled]="!editFlag">
-<div>
+<div class="saveFlag">
 <a [hidden]="!editFlag" (click)="onSave()">保存</a>
 <a [hidden]="!editFlag" (click)="onCancel()">取消</a>
 </div>

@@ -4,7 +4,7 @@ export class Post{
   _id: ObjectId;
   title: string;
   content: string;
-  category: string;
+  category: ObjectId;
   chaper: number;
   section: number;
   author: string;

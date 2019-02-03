@@ -1,0 +1,37 @@
+div.post {
+  border-bottom: 1px dotted #e8e8e8;
+  margin-bottom: 10px;
+}
+.post p{
+  margin-bottom: 5px;
+}
+.post-meta {
+  font-size: 12px;
+  color: #999;
+}
+
+.post-meta .post-title {
+  color: #333;
+  text-transform: none;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  font-family: "Microsoft YaHei",'Myriad Pro','Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+blockquote {
+  font-size: 13px !important;
+}
+.post-meta .post-content {
+  color: #333;
+  font-weight: normal;
+  font-size: 13px !important;
+  margin-top: -5px;
+}
+
+.post-meta a:hover {
+  cursor: pointer;
+}
+
+.align-right {
+  text-align: right;
+}

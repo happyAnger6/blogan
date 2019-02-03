@@ -18,6 +18,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { DynamicFormModelComponent } from './forms/dynamic-form-model/dynamic-form-model.component';
 import { DynamicFormColComponent } from './forms/dynamic-form-col/dynamic-form-col.component';
 import { CategoryMenuComponent } from './category-menu/category-menu.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { PostListItemComponent } from './components/post-list-item/post-list-item.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { CategoryMenuComponent } from './category-menu/category-menu.component';
     DynamicFormModelComponent,
     DynamicFormColComponent,
     CategoryMenuComponent,
+    BreadcrumbComponent,
+    PostListComponent,
+    PostListItemComponent,
   ],
   imports: [
     BrowserModule,

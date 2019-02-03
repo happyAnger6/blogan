@@ -22,3 +22,8 @@ div.operator {
   text-align: center;
   width: 6em;
 }
+
+div.saveFlag a {
+  cursor: pointer;
+  margin-left: 5px;
+}

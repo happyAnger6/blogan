@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 from blogan import db
 from blogan.blueprints import api_bp
 from blogan.models import Category
-from blogan.utils.tools import json2formdata
+from blogan.utils.tools import json2formdata, updateCategoryModel
 
 @api_bp.route('/category', methods = ['GET', 'POST'])
 def category():
@@ -39,7 +39,7 @@ def category_post(category_id):
         form = category_form(json2formdata(json_data))
         if form.validate():
             category = Category.objects(id=category_id).get_or_404()
-            category.update(**form.data)
+            updateCategoryModel(category, form.data)
             category.save()
             return jsonify('success.')
         else:

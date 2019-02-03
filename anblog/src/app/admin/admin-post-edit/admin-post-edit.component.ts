@@ -4,6 +4,7 @@ import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
+import { ObjectId } from '../../models/objectid';
 
 @Component({
   selector: 'app-admin-post-edit',
@@ -45,10 +46,10 @@ export class AdminPostEditComponent implements OnInit {
       });
   }
 
-  findCategoryIdByName(name: string): string {
+  findCategoryIdByName(name: string): ObjectId {
     for (let c of this.categories) {
       if (c.name == name) {
-        return c._id.$oid;
+        return c._id;
       }
     }
   }
