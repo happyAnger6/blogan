@@ -1,0 +1,5 @@
+<div class='page-nav'*ngIf="total_num">
+<a class="prev-page" *ngIf="cur_page > 1" (click)="onPrev()"><< 上一页</a>
+<a class="page-nums" [class.cur-page]="i==cur_page" *ngFor="let i of all_pages" (click)="onPage(i)">{{ i }}</a>
+<a class="next-page" *ngIf="cur_page < total_pages" (click)="onNext()">下一页 >></a>
+</div>

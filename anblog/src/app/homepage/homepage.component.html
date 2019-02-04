@@ -1,3 +1,4 @@
 <div class="col-md-8 col-sm-8">
   <app-post-list [posts]="posts"></app-post-list>
+  <app-page-nav *ngIf="total_nums > 0" [total_num]="total_nums" [per_num]="5" (cur_page_e)="onSelectPage($event)"></app-page-nav>
 </div>

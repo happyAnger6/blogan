@@ -25,13 +25,20 @@ def updatePostModel(model, form):
 @api_bp.route('/post', methods = ['GET', 'POST'])
 def post():
     if request.method == 'GET':
-        posts = Post.objects
+        page = request.args.get('page')
+        per_page = request.args.get('per_page')
+        print(page, per_page)
+        if page and per_page:
+            posts = Post.objects.paginate(page=int(page), per_page=int(per_page)).items
+        else:
+            posts = Post.objects
         return jsonify(posts)
     elif request.method == 'POST':
         post_form = model_form(Post)
         data = request.json
-        post_id = data['_id']['$oid']
+        post_id = data.get('_id', None)
         if post_id:
+            post_id = post_id['oid']
             print(post_id)
             post = Post.objects(id=post_id).get_or_404()
             updatePostModel(post, data)
@@ -39,8 +46,7 @@ def post():
             return jsonify('success.')
         user_name = data['author']
         author = User.objects(name=user_name).get()
-        data.update({'author': author.id})
-        print(data)
+        data.update({'category': data['category']['$oid'], 'author': author.id})
         form = post_form(json2formdata(data))
         if form.validate():
             category_id = data['category']

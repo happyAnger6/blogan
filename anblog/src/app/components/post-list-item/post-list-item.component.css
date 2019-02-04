@@ -32,6 +32,13 @@ blockquote {
   cursor: pointer;
 }
 
+.read-more a {
+  text-decoration: none;
+  background: #22bcdd;
+  color: #ffffff !important;
+  padding: 4px 13px;
+  display: inline-block;
+}
 .align-right {
   text-align: right;
 }

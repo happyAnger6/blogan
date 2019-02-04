@@ -21,6 +21,7 @@ import { CategoryMenuComponent } from './category-menu/category-menu.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostListItemComponent } from './components/post-list-item/post-list-item.component';
+import { PageNavComponent } from './components/page-nav/page-nav.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PostListItemComponent } from './components/post-list-item/post-list-ite
     BreadcrumbComponent,
     PostListComponent,
     PostListItemComponent,
+    PageNavComponent,
   ],
   imports: [
     BrowserModule,

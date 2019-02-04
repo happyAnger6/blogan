@@ -13,7 +13,6 @@ import { ObjectId } from '../../models/objectid';
 })
 export class AdminPostEditComponent implements OnInit {
   postSchema = require('./edit_post_form.json');
-  postContent: string;
   @Input() post: Post = null;
   @Output() editFlag = new EventEmitter<number>();
   categories: Category[];
@@ -54,10 +53,9 @@ export class AdminPostEditComponent implements OnInit {
     }
   }
 
-  val2post(value:any, content:any, post: Post) {
+  val2post(value:any, post: Post) {
     post.title = value.title;
     post.type = this.iType2ModelType(value.type);
-    post.content = content;
     post.showFlag = this.iFlag2ModelFlag(value.showFlag);
     post.category = this.findCategoryIdByName(value.category);
     post.author = "admin";
@@ -75,8 +73,8 @@ export class AdminPostEditComponent implements OnInit {
     return 0;
   }
 
-  addPost(val, content) {
-    this.val2post(val, content, this.post);
+  addPost(val) {
+    this.val2post(val, this.post);
     this.postService.addPost(this.post)
       .subscribe();
     this.editFlag.emit(1);

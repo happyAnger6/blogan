@@ -24,6 +24,15 @@ export class PostService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
+  getPostsByPage(page:number, per_page:number): Observable<Post[]> {
+    const url = `${Post_url}?page=${page}&per_page=${per_page}`;
+    return this.http.get<Post[]>(url)
+      .pipe(
+        tap(_ => this.log('fetched posts.')),
+        catchError(this.handleError<Post[]>('get all posts'))
+      )
+
+  }
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(Post_url)
       .pipe(
