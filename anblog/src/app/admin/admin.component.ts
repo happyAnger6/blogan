@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
@@ -7,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AdminComponent implements OnInit {
-
+  @Input() tabFlag = 0;
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  onSelectTab(tabFlag) {
+    this.tabFlag = tabFlag;
   }
 
 }

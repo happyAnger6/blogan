@@ -1,7 +1,9 @@
 <div class="post-lists" *ngIf="!editFlag">
-    <app-admin-post-item [post]="post" *ngFor="let post of posts" (operFlag)="onOper($event, post)"></app-admin-post-item>
+  <app-admin-post-item [post]="post" *ngFor="let post of posts" (operFlag)="onOper($event, post)"></app-admin-post-item>
+  <tools-page-nav *ngIf="total_nums > 0" [total_num]="total_nums" [per_num]="8" [cur_page_in]="cur_page" (cur_page_e)="onSelectPage($event)"></tools-page-nav>
 </div>
 
 <div class="post-edit-one" *ngIf="editFlag">
   <app-admin-post-edit [post]="editPost" (editFlag)="onEditResult($event)"></app-admin-post-edit>
 </div>
+

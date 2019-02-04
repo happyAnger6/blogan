@@ -19,6 +19,8 @@ import { AdminPostListComponent } from './admin-post-list/admin-post-list.compon
 import { AdminPostItemComponent } from './admin-post-item/admin-post-item.component';
 import { AdminPostEditComponent } from './admin-post-edit/admin-post-edit.component';
 
+import { ToolsModule } from '../tools/tools.module';
+
 @NgModule({
   imports: [
     SchemaFormModule.forRoot(),
@@ -27,6 +29,7 @@ import { AdminPostEditComponent } from './admin-post-edit/admin-post-edit.compon
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    ToolsModule,
     AdminRoutingModule
   ],
   declarations: [

@@ -68,12 +68,6 @@ const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    children: [
-      categoryRoutes,
-      postRoutes,
-      commentRoutes,
-      defaultRoutes
-    ]
   }
 ];
 

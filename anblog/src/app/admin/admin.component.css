@@ -32,3 +32,7 @@ li.item:hover {
   background-color: #b92c28;
   cursor: pointer;
 }
+
+li.selected {
+  background-color: #9fcdff;
+}

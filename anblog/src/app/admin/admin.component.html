@@ -2,16 +2,18 @@
   <div class="col-md-3 col-sm-3 left-side">
     <ul>
       <li class="title">内容</li>
-      <li class="item" routerLink="category" routerLinkActive="active">分类管理</li>
-      <li class="item" routerLink="post" routerLinkActive="active">文章管理</li>
-      <li class="item" routerLink="comment" routerLinkActive="active">评论管理</li>
+      <li class="item" [class.selected]="tabFlag==0" (click)="onSelectTab(0)">文章管理</li>
+      <li class="item" [class.selected]="tabFlag==1" (click)="onSelectTab(1)">分类管理</li>
+      <li class="item" [class.selected]="tabFlag==2" (click)="onSelectTab(2)">评论管理</li>
     </ul>
     <ul>
       <li class="title">设置</li>
       <li class="item">博客设置</li>
     </ul>
   </div>
-  <div class="col-md-9 col-sm-9 content">
-    <router-outlet></router-outlet>
+  <div class="col-md-9 col-sm-9 content" [ngSwitch]="tabFlag">
+    <app-admin-category *ngSwitchCase="1"></app-admin-category>
+    <app-admin-comment *ngSwitchCase="2"></app-admin-comment>
+    <app-admin-post *ngSwitchDefault></app-admin-post>
   </div>
 </div>

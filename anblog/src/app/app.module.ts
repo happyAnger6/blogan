@@ -21,7 +21,8 @@ import { CategoryMenuComponent } from './category-menu/category-menu.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostListItemComponent } from './components/post-list-item/post-list-item.component';
-import { PageNavComponent } from './components/page-nav/page-nav.component';
+
+import { ToolsModule } from './tools/tools.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,6 @@ import { PageNavComponent } from './components/page-nav/page-nav.component';
     BreadcrumbComponent,
     PostListComponent,
     PostListItemComponent,
-    PageNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +47,7 @@ import { PageNavComponent } from './components/page-nav/page-nav.component';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),*/
+    ToolsModule,
     AdminModule,
     AppRoutingModule
   ],

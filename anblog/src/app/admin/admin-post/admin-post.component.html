@@ -1,5 +1,8 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active" ><a routerLink="list" routerLinkActive="active">查看文章</a></li>
-  <li role="presentation" class="active" ><a routerLink="new" routerLinkActive="active">发表新文章</a></li>
+  <li role="presentation" [class.selected]="tabFlag==0" ><a (click)="onSelectTab(0)">查看文章</a></li>
+  <li role="presentation" [class.selected]="tabFlag==1"><a (click)="onSelectTab(1)">发表新文章</a></li>
 </ul>
-<router-outlet></router-outlet>
+<div [ngSwitch]="tabFlag">
+  <app-admin-post-new *ngSwitchCase="1"></app-admin-post-new>
+  <app-admin-post-list *ngSwitchDefault></app-admin-post-list>
+</div>

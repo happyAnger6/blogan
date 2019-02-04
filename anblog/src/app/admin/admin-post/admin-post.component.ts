@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-post.component.css']
 })
 export class AdminPostComponent implements OnInit {
+  tabFlag: number = 0;
   constructor() {}
 
   ngOnInit() {
+  }
+
+  onSelectTab(tabFlag) {
+    this.tabFlag = tabFlag;
+    console.log(this.tabFlag);
   }
 
 }

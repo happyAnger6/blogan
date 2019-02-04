@@ -19,7 +19,6 @@ export class HomepageComponent implements OnInit {
     this.postService.getAllPosts()
       .subscribe(c => {
         this.total_nums = c.length;
-        console.log(this.total_nums);
       });
 
     this.postService.getPostsByPage(1, 5)

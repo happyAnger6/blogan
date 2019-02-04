@@ -1,13 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-page-nav',
+  selector: 'tools-page-nav',
   templateUrl: './page-nav.component.html',
   styleUrls: ['./page-nav.component.css']
 })
 export class PageNavComponent implements OnInit {
   @Input() total_num: number;
   @Input() per_num: number;
+  @Input() cur_page_in: number;
   @Output() cur_page_e = new EventEmitter<number>();
   total_pages: number = 0;
   cur_page: number = 0;
@@ -23,7 +24,12 @@ export class PageNavComponent implements OnInit {
       {
         this.total_pages += 1;
       }
-      this.cur_page = 1;
+
+      if(this.cur_page_in > 0)
+        this.cur_page = this.cur_page_in;
+      else
+        this.cur_page = 1;
+
       this.total_pages = Math.floor(this.total_pages);
       for(let i = 1; i <= this.total_pages; i++)
         this.all_pages.push(i);

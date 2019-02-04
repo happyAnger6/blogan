@@ -11,6 +11,8 @@ export class AdminPostListComponent implements OnInit {
   editFlag: boolean = false;
   posts: Post[];
   editPost: Post;
+  total_nums: number = 0;
+  cur_page: number = 1;
   constructor(
     private postService: PostService
   ) { }
@@ -19,6 +21,11 @@ export class AdminPostListComponent implements OnInit {
     this.postService.getAllPosts()
       .subscribe(posts => {
         this.posts = posts;
+        this.total_nums = this.posts.length;
+        this.postService.getPostsByPage(1, 8)
+          .subscribe(c => {
+            this.posts = c
+          });
       });
   }
 
@@ -29,11 +36,18 @@ export class AdminPostListComponent implements OnInit {
   onOper(oper:number, post:Post) {
     this.editFlag = true;
     this.editPost = post;
-    console.log(oper, post.title);
   }
 
   onEditResult(oper:number) {
     this.editFlag = false;
+  }
+
+  onSelectPage(curPage: number) {
+    this.cur_page = curPage;
+    this.postService.getPostsByPage(curPage, 8)
+      .subscribe(c => {
+        this.posts = c
+      });
   }
 
 }
