@@ -57,5 +57,5 @@ def post():
 @api_bp.route('/post/<string:post_id>', methods = [ 'GET', 'PUT' ])
 def post_post(post_id):
     if request.method == 'GET':
-        post = Post.objects(id=post_id).get()
+        post = Post.objects(id=post_id).first()
         return jsonify(post)

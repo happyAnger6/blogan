@@ -24,11 +24,15 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/dist/bootstrap/css/bootstrap.min.css"
+              "src/assets/bootstrap/css/bootstrap.min.css",
+              "src/assets/sharejs/css/share.min.css"
             ],
             "scripts": [
-              "src/dist/jquery/jquery-3.3.1.min.js",
-              "src/dist/bootstrap/js/bootstrap.min.js"
+              "src/assets/jquery/jquery-3.3.1.min.js",
+              "src/assets/bootstrap/js/bootstrap.min.js",
+              "src/assets/ckeditor/ckeditor.js",
+              "src/assets/sharejs/js/social-share.min.js",
+              "src/assets/sharejs/js/qrcode.js"
             ]
           },
           "configurations": {

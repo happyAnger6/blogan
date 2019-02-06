@@ -24,6 +24,7 @@ import { PostListItemComponent } from './components/post-list-item/post-list-ite
 
 import { ToolsModule } from './tools/tools.module';
 import { NavTopComponent } from './nav-top/nav-top.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NavTopComponent } from './nav-top/nav-top.component';
     PostListComponent,
     PostListItemComponent,
     NavTopComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,

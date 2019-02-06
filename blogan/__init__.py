@@ -9,6 +9,7 @@ from blogan.settings import config
 from blogan.blueprints.api import api_bp
 from blogan.extensions import db
 from blogan.models import model_lst, User, Category, Post
+from blogan import fakers
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
@@ -46,82 +47,66 @@ def register_errors(app):
     pass
 
 def register_commands(app):
-    def create_root_category():
-        Category.objects.delete()
-        root_category = Category(
-            name='root',
-            father='-1',
-            type=0,
-            url='',
-            level=0,
-            children=[]
-        )
-        root_category.save()
+    def drop_all():
+        for mdl in model_lst:
+            mdl.objects.delete()
+            mdl.drop_collection()
 
-    def create_admin_user():
-        User.objects.delete()
-        admin = User(
-            name='admin',
-            password='admin',
-            type=10,
-            gold=100000
-        )
-        admin.save()
-
-    fake = Faker()
     @app.cli.command()
     @click.option('--drop', is_flag=True, help='Create after drop.')
     def initdb(drop):
         """Initialize the database."""
         if drop:
             click.confirm('This operation will delete the database, do you want to continue?', abort=True)
-            for mdl in model_lst:
-                mdl.objects.delete()
+            drop_all()
             click.echo('Drop tables.')
-
-        create_admin_user()
-        create_root_category()
 
         click.echo('Initialized database.')
 
+    @app.cli.command()
+    @click.option('--username', prompt=True, help='The username used to login.')
+    @click.option('--password', prompt=True, hide_input=True,
+                  confirmation_prompt=True, help='The password used to login.')
+    def init(username, password):
+        """Building Bluelog, just for you."""
 
-    def create_fake_categories(count):
-        root_category = Category.objects.get(name='root')
-        for i in range(count):
-            name = fake.name()
-            category = Category(
-                name=name,
-                father=str(root_category.id),
-                type=0,
-                url=name,
-                level=1,
-                children=[],
-                showFlag=1
-            )
-            category.save()
-            root_category.children.append(str(category.id))
-            root_category.save()
+        click.echo('Initializing the database...')
+
+        admin = User.objects(type=10).first()
+        if admin is not None:
+            click.echo('The administrator already exists, updating...')
+            admin.name = username
+            admin.set_password(password)
+            admin.save()
+        else:
+            click.echo('Creating the temporary administrator account...')
+            fakers.fake_user_admin(username, password)
+
+        category = Category.objects.first()
+        if category is None:
+            click.echo('Creating the root category...')
+            fakers.fake_category_root()
+
+        click.echo('Done.')
 
     @app.cli.command()
-    @click.option('--count', default=20, help='Quantity of messages, default is 20.')
-    def forge(count):
-        """Generate fake messages."""
+    @click.option('--category', default=4, help='Quantity of categories, default is 10.')
+    @click.option('--subcategory', default=20, help='Quantity of sub-categories, default is 20.')
+    @click.option('--post', default=50, help='Quantity of posts, default is 50.')
+    def forge(category, subcategory, post):
 
-        fake = Faker()
-        click.echo('Working...')
+        drop_all()
+        click.echo('Generating the administrator...')
+        fakers.fake_user_admin('admin', 'admin')
 
-        click.echo('Created %d categories.' % count)
+        click.echo('Generating %d categories %d sub-categories...' % (category, subcategory))
+        fakers.fake_category_root()
+        fakers.fake_category_categories(category, subcategory)
 
-    @app.cli.command()
-    @click.option('--collection', default='category', help='show all datas of collections.')
-    def show(collection):
-        """Generate fake messages."""
-        fake = Faker()
-        click.echo('Working...')
+        click.echo('Generating %d posts...' % post)
+        fakers.fake_posts(post)
 
-        count = 0
-        click.echo('show %d categories.' % count)
-
+        click.echo('Done.')
 
 def register_request_handlers(app):
     pass
