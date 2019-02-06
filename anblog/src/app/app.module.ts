@@ -23,6 +23,7 @@ import { PostListComponent } from './components/post-list/post-list.component';
 import { PostListItemComponent } from './components/post-list-item/post-list-item.component';
 
 import { ToolsModule } from './tools/tools.module';
+import { NavTopComponent } from './nav-top/nav-top.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ToolsModule } from './tools/tools.module';
     BreadcrumbComponent,
     PostListComponent,
     PostListItemComponent,
+    NavTopComponent,
   ],
   imports: [
     BrowserModule,

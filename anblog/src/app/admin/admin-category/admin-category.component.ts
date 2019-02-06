@@ -9,9 +9,14 @@ import { CategoryService } from '../../services/category.service';
   styleUrls: ['./admin-category.component.css']
 })
 export class AdminCategoryComponent implements OnInit {
+  tabFlag: number = 0;
   constructor(){}
 
   ngOnInit() {
+  }
+
+  onSelectTab(tabFlag) {
+    this.tabFlag = tabFlag;
   }
 
 }

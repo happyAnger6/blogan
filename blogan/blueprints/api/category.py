@@ -2,8 +2,7 @@ from flask import request, jsonify
 from flask_mongoengine.wtf import  model_form
 from bson.objectid import ObjectId
 
-from blogan import db
-from blogan.blueprints import api_bp
+from blogan.blueprints.api import api_bp
 from blogan.models import Category
 from blogan.utils.tools import json2formdata, updateCategoryModel
 

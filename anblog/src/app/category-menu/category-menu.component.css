@@ -7,3 +7,8 @@ button {
   width: 8em;
   height: 3em;
 }
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}

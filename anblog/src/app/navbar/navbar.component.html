@@ -1,14 +1,16 @@
-<div class="navs-menu">
+<nav id="main-nav" class="col-md-12 col-sm-12 menu-nav">
+  <ul id="main-nav-menu" class="menu">
+  <li class="menu-item-home">
+   <a href="/">首页</a>
+  </li>
 
-  <div class="home-menu btn-group">
-  <button type="button" class="btn btn-default"  routerLink="/" routerLinkActive="active">主页</button>
-  </div>
+    <li *ngFor="let category of topCategories" class="menu-item-category">
+      <a>{{ category.name }}</a>
+    </li>
 
-  <div class="category-menu btn-group" *ngFor="let c of topCategories">
-  <app-category-menu [category]="c" [allCategories]="allCategories"></app-category-menu>
-  </div>
+  <li class="admin-menu">
+  <a routerLink="admin">管理页面</a>
+  </li>
 
-  <div class="admin-menu btn-group">
-  <button type="button" class="btn btn-default"  routerLink="/admin" routerLinkActive="active">管理页面</button>
-  </div>
-</div>
+  </ul>
+</nav>

@@ -1,5 +1,9 @@
 <ul class="nav nav-tabs">
-  <li role="presentation"><a data-toggle="tab" routerLink="new" routerLinkActive="active">创建新类别</a></li>
-  <li role="presentation"><a data-toggle="tab" routerLink="list" routerLinkActive="active">编辑分类</a></li>
+  <li [class.selected]="tabFlag==0" (click)="onSelectTab(0)">编辑分类</li>
+  <li [class.selected]="tabFlag==1" (click)="onSelectTab(1)">创建新类别</li>
 </ul>
-<router-outlet></router-outlet>
+
+<div [ngSwitch]="tabFlag">
+<app-admin-category-new *ngSwitchCase="1"></app-admin-category-new>
+<app-admin-category-list *ngSwitchDefault></app-admin-category-list>
+</div>

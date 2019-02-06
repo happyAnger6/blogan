@@ -1,3 +1,35 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>名称</th>
+    <th>url</th>
+    <th>级别</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+ <tr *ngFor="let category of categories; let i=index">
+   <td>
+     <input type="text" [(ngModel)]="category.name" [disabled]="!editFlag || i != editItem">
+     <div class="saveFlag">
+       <a [hidden]="!editFlag || i != editItem" (click)="onSave()">保存</a>
+       <a [hidden]="!editFlag || i != editItem" (click)="onCancel()">取消</a>
+     </div>
+   </td>
+   <td>{{ category.url }}</td>
+   <td>
+     <input type="text" [(ngModel)]="category.level" [disabled]="!editFlag || i != editItem">
+   </td>
+   <td>
+     <div class="operator">
+       <button type="button" class="btn-default" (click)="onEdit(category, i)">编辑</button>
+       <button type="button" class="btn-default" (click)="onDelete(category)">删除</button>
+     </div>
+   </td>
+ </tr>
+  </tbody>
+</table>
+<!--
 <ul class="category-list list-group">
   <li class="category-header list-group-item">
   <div class="c-name">名称</div>
@@ -9,3 +41,4 @@
     <app-admin-category-item [category]="category" (deleteFlag)="onDeleteItem($event)"></app-admin-category-item>
   </li>
   </ul>
+  -->

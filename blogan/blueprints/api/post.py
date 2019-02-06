@@ -2,14 +2,13 @@ from flask import request, jsonify
 from flask_mongoengine.wtf import  model_form
 from bson.objectid import ObjectId
 
-from blogan.blueprints import api_bp
+from blogan.blueprints.api import api_bp
 from blogan.models import Post, Category, User
 from blogan.utils.tools import json2formdata
 
 def updatePostModel(model, form):
     for k in form:
         value = form[k]
-        print(k, value)
         if value:
             if k == 'title':
                 model.update(title = value)
@@ -27,7 +26,6 @@ def post():
     if request.method == 'GET':
         page = request.args.get('page')
         per_page = request.args.get('per_page')
-        print(page, per_page)
         if page and per_page:
             posts = Post.objects.paginate(page=int(page), per_page=int(per_page)).items
         else:
@@ -39,7 +37,6 @@ def post():
         post_id = data.get('_id', None)
         if post_id:
             post_id = post_id['oid']
-            print(post_id)
             post = Post.objects(id=post_id).get_or_404()
             updatePostModel(post, data)
             post.save()

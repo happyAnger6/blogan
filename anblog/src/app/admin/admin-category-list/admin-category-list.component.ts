@@ -10,6 +10,9 @@ import { CategoryService } from '../../services/category.service';
 })
 export class AdminCategoryListComponent implements OnInit {
   categories: Category[];
+  category: Category;
+  editFlag: boolean = false;
+  editItem: number = 0;
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
@@ -21,6 +24,28 @@ export class AdminCategoryListComponent implements OnInit {
 
   onDeleteItem(c_id: string) {
     this.categories = this.categories.filter(item => item._id.$oid != c_id);
+  }
+
+  onEdit(category, i) {
+    this.editFlag = true;
+    this.category = category;
+    this.editItem = i;
+  }
+
+  onDelete(category) {
+    this.editFlag = false;
+    this.categoryService.deleteCategory(category)
+      .subscribe(c => {
+      });
+  }
+  onSave() {
+    this.editFlag = false;
+    this.categoryService.updateCategory(this.category)
+      .subscribe();
+  }
+
+  onCancel() {
+    this.editFlag = false;
   }
 
 }

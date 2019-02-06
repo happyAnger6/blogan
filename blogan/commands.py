@@ -1,7 +1,7 @@
 import click
 from faker import Faker
 
-from blogan import app, db
+from blogan import app
 from blogan.models import Category, User, model_lst
 
 def create_root_category():
