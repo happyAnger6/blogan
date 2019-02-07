@@ -25,6 +25,7 @@ import { PostListItemComponent } from './components/post-list-item/post-list-ite
 import { ToolsModule } from './tools/tools.module';
 import { NavTopComponent } from './nav-top/nav-top.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { SocialShareComponent } from './components/social-share/social-share.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
     PostListItemComponent,
     NavTopComponent,
     PostDetailComponent,
+    SocialShareComponent,
   ],
   imports: [
     BrowserModule,

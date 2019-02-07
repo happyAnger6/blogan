@@ -6,7 +6,6 @@
       {{ post.publish_data.$date | date:'yyyy-MM-dd HH:mm:ss'}}
     </p>
       <p class="post-content" [innerHTML]="post.content | slice:0:200"></p>
-      <div class="social-share"></div>
     <p class="align-right">
       <span class="read-more">
         <a routerLink="/post/detail/{{ post._id.$oid }}">阅读全文 >></a>
