@@ -8,3 +8,4 @@ Flask-MongoEngine
 Flask-DebugToolbar
 Flask-WTF
 flask-cors
+flask-login

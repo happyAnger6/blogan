@@ -1,10 +1,11 @@
 import datetime
 
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 from blogan.extensions import db
 
-class User(db.Document):
+class User(db.Document, UserMixin):
    name = db.StringField(required=True, unique=True)
    realname = db.StringField()
    password = db.StringField()
