@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service'
@@ -26,6 +26,9 @@ import { ToolsModule } from './tools/tools.module';
 import { NavTopComponent } from './nav-top/nav-top.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { SocialShareComponent } from './components/social-share/social-share.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +48,13 @@ import { SocialShareComponent } from './components/social-share/social-share.com
     NavTopComponent,
     PostDetailComponent,
     SocialShareComponent,
+    LoginComponent,
+    AuthComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
  /*   HttpClientInMemoryWebApiModule,
     HttpClientInMemoryWebApiModule.forRoot(

@@ -1,22 +1,29 @@
+from flask import request, jsonify
+from flask_mongoengine.wtf import model_form
 from flask_login import login_user, logout_user, login_required, current_user
 
 from blogan.blueprints.api import api_bp
 from blogan.models import User
+from blogan.utils.tools import json2formdata
 
 @api_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('blog.index'))
+        return jsonify('success.')
 
-    form = LoginForm()
+    user_form = model_form(User)
+    json_data = request.json
+    form = user_form(json2formdata(json_data))
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
         remember = form.remember.data
-        admin = User.query.first()
-        if admin:
-            if username == admin.username and admin.validate_password(password):
-                login_user(admin, remember)
+        user = User.objects(name=username).first()
+        if user:
+            if username == user.name and user.validate_password(password):
+                login_user(user, remember)
+                return jsonify(user)
+    return jsonify('failed.'), 403
 
 
 @api_bp.route('/logout')

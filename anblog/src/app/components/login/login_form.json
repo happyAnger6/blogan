@@ -1,0 +1,71 @@
+{
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "用户名"
+    },
+    "password": {
+      "type": "password",
+      "description": "密码",
+      "widget": "select",
+      "oneOf":[
+        {
+          "description": "根",
+          "enum": [
+            "root"
+          ]
+        }
+      ],
+      "default": "根"
+    },
+    "type":{
+      "type": "string",
+      "description": "类型",
+      "widget": "select",
+      "oneOf": [
+        {
+          "description": "普通",
+          "enum": [
+            "normal"
+          ]
+        },
+        {
+          "description": "章节",
+          "enum": [
+            "chapter"
+          ]
+        }
+      ],
+      "default": "normal"
+    },
+    "url": {
+      "type": "string",
+      "description": "访问url"
+    },
+    "level": {
+      "type": "integer",
+      "description": "分类级别"
+    },
+    "flag": {
+      "type": "string",
+      "description": "是否显示",
+      "widget": "radio",
+      "oneOf": [
+        {
+          "description": "显示",
+          "enum": [
+            "show"
+          ]
+        },
+        {
+          "description": "不显示",
+          "enum": [
+            "hidden"
+          ]
+        }
+      ],
+      "default": "show"
+    }
+  },
+  "required": [ "name", "url" ]
+}

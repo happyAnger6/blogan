@@ -12,6 +12,8 @@ import { AdminCategoryListComponent } from './admin-category-list/admin-category
 import { AdminPostListComponent } from './admin-post-list/admin-post-list.component';
 import { AdminPostEditComponent } from './admin-post-edit/admin-post-edit.component';
 
+import { AuthGuard } from '../auth/auth.guard';
+
 const categoryRoutes = {
     path: 'category',
     component: AdminCategoryComponent,
@@ -68,6 +70,7 @@ const adminRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

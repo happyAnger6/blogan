@@ -13,6 +13,7 @@ export class AdminCategoryNewComponent implements OnInit {
   newCategory: Category = new Category();
   ckeditorContent: string;
   mySchema = require('./new_category_form.json');
+  val: any;
   categories: Category[];
   constructor(private categoryService: CategoryService,
               ) {
@@ -27,7 +28,7 @@ export class AdminCategoryNewComponent implements OnInit {
           c.name
         ]
       })
-    };
+    }
     this.mySchema.properties.father.oneOf = fatherArray;
   }
 

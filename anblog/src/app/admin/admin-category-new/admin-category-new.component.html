@@ -1,2 +1,2 @@
-<sf-form [schema]="mySchema" (onChange)="$event.value"></sf-form>
-<button (click)="addCategory()">添加新分类</button>
+<sf-form [schema]="mySchema" (onChange)="val=$event.value"></sf-form>
+<button (click)="addCategory(val)">添加新分类</button>
