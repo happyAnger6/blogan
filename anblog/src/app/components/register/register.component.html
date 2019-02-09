@@ -1,3 +1,34 @@
-<p>
-  register works!
-</p>
+<div class="container register">
+  <div class="row wrapper">
+    <div class="register-form col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+      <form [formGroup]="register_form" *ngIf="register_form">
+        <label>
+          用户名:
+          <input type="text" [formControl]="name">
+        </label>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="name.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors.minlength">
+            Name must be at least 4 characters long.
+          </div>
+          <div *ngIf="name.errors.forbiddenName">
+            Name cannot be Bob.
+          </div>
+        </div>
+        <label>
+          密码:
+          <input type="password" [formControl]="passwd">
+        </label>
+        <label>
+          再输一次:
+          <input type="password" [formControl]="passwd_again">
+        </label>
+        <button type="submit" (click)="onSubmit()">注册</button>
+      </form>
+    </div>
+  </div>
+</div>

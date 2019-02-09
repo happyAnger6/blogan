@@ -1,15 +1,8 @@
-#top-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  line-height: 30px;
-  position: relative;
-  font-size: 12px;
-  float: right;
-  font-family: "Microsoft YaHei", 'Myriad Pro', 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+ul li {
+  padding: 0 10px;
 }
 
-#top-nav ul li {
-  float: left;
-  position: relative;
+.active {
+  background-color: #0a001f;
 }
+
