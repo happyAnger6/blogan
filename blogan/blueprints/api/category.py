@@ -21,7 +21,7 @@ def category():
             try:
                 new_category.save()
             except Exception as e:
-                return jsonify({'errormsg:': str(e)}), 500
+                return jsonify({'errmsg:': str(e)}), 500
             return jsonify(new_category)
         else:
             return jsonify(form.errors), 400

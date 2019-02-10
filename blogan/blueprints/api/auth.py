@@ -25,6 +25,23 @@ def login():
                 return jsonify(user)
     return jsonify('failed.'), 403
 
+@api_bp.route('/register', methods=['POST'])
+def register():
+    if current_user.is_authenticated:
+        return jsonify('please logout first.')
+
+    user_form = model_form(User)
+    json_data = request.json
+    form = user_form(json2formdata(json_data))
+    if form.validate_on_submit():
+        new_user = User(**form.data)
+        try:
+            new_user.save()
+        except Exception as e:
+            return jsonify({'errmsg:': str(e)}), 500
+        return jsonify(new_user)
+    else:
+        return jsonify(form.errors), 400
 
 @api_bp.route('/logout')
 @login_required
