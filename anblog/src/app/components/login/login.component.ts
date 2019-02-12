@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,13 +15,29 @@ export class LoginComponent implements OnInit {
     passwd : new FormControl(''),
     remeber: new FormControl(''),
   });
-  constructor() { }
+  errmsg: string;
+  user: User = new User();
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(this.userForm.value);
+    let form_value = this.userForm.value;
+    this.authService.login({
+      'username': form_value.name,
+      'password': form_value.passwd,
+      'remeber': form_value.remeber
+    }).subscribe({
+      next:
+        r => {
+        },
+      error:
+        err => {
+        this.errmsg = err;}
+    });
   }
 
 }

@@ -1,9 +1,11 @@
-<ul class="nav nav-pills">
-  <li role="presentation" (click)="onSelect(0)">登 陆</li>
-  <li role="presentation" (click)="onSelect(1)">注 册</li>
+<div class="nav-tabs">
+<ul class="nav">
+  <li [class.active]="tabFlag==0"><a (click)="onSelect(0)" >登 陆</a></li>
+  <li [class.active]="tabFlag==1"><a (click)="onSelect(1)" >注 册</a></li>
 </ul>
 
 <div class="auth-tabs" [ngSwitch]="tabFlag">
-  <app-login *ngSwitchCase="1"></app-login>
-  <app-register ngSwitchDefault></app-register>
+  <app-register *ngSwitchCase="1"></app-register>
+  <app-login *ngSwitchDefault></app-login>
+</div>
 </div>

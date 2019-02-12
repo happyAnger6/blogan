@@ -23,7 +23,7 @@ export class AuthService {
     private msgService: MessageService
   ) { }
 
-  login(user: User): Observable<User> {
+  login(user): Observable<User> {
     return this.http.post<User>(Login_url, user, httpOptions)
       .pipe(
         tap(r => { this.log(`login resp=r`);
@@ -64,7 +64,7 @@ export class AuthService {
         }
         // return an observable with a user-facing error message
         return throwError(
-          'Something bad happened; please try again later.');
+          `error.${error.error}`);
       }
       else {
         // TODO: send the error to remote logging infrastructure

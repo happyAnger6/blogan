@@ -11,18 +11,19 @@ def login():
     if current_user.is_authenticated:
         return jsonify('success.')
 
-    user_form = model_form(User)
     json_data = request.json
-    form = user_form(json2formdata(json_data))
-    if form.validate_on_submit():
-        username = form.username.data
-        password = form.password.data
-        remember = form.remember.data
+    if request.method == 'POST':
+        username = json_data['username']
+        password = json_data['password']
+        remember = json_data['remeber']
         user = User.objects(name=username).first()
+        print(user)
         if user:
             if username == user.name and user.validate_password(password):
                 login_user(user, remember)
                 return jsonify(user)
+        else:
+            return jsonify("user %s doesn't exist!" %(username)), 403
     return jsonify('failed.'), 403
 
 @api_bp.route('/register', methods=['POST'])

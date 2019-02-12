@@ -27,8 +27,8 @@ import { NavTopComponent } from './nav-top/nav-top.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { SocialShareComponent } from './components/social-share/social-share.component';
 import { LoginComponent } from './components/login/login.component';
-import { AuthComponent } from './components/auth/auth.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -49,8 +49,8 @@ import { RegisterComponent } from './components/register/register.component';
     PostDetailComponent,
     SocialShareComponent,
     LoginComponent,
-    AuthComponent,
     RegisterComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

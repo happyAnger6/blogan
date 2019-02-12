@@ -13,6 +13,6 @@ export class AuthComponent implements OnInit {
   }
 
   onSelect(flag) {
-
+    this.tabFlag = flag;
   }
 }

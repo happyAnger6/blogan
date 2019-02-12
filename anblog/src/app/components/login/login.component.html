@@ -1,22 +1,29 @@
+<div class="login-container">
+  <div class="center">
+    <div class="wrapper">
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
- <label>
-   用户名:
-   <input type="text" formControlName="name">
- </label>
+    <label for="name">用户名</label>
+   <input type="text" formControlName="name" id="name">
   </div>
 
   <div class="form-group">
-  <label>
-    密码:
-    <input type="password" formControlName="passwd">
-  </label>
+    <label for="password">密码</label>
+    <input type="password" formControlName="passwd" id="password">
+  </div>
+
+  <div class="form-button">
+  <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">登陆</button>
   </div>
 
   <div class="checkbox">
     <label>
-      <input type="checkbox">记住我
+      <input type="checkbox" formControlName="remeber">记住我
     </label>
   </div>
-  <button type="submit" class="btn btn-default" [disabled]="!userForm.valid">登陆</button>
 </form>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errmsg">{{ errmsg }}</div>
+</div>

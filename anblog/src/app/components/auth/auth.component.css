@@ -1,0 +1,35 @@
+.nav-tabs {
+  margin: 0 0 20px 0;
+  display: block;
+}
+
+.nav-tabs ul.nav {
+  margin-bottom: 25px;
+}
+
+.nav-tabs ul.nav {
+  list-style: none;
+  padding: 0 0;
+}
+
+.nav-tabs ul li{
+  float: left;
+  position: relative;
+}
+
+.nav-tabs ul li a{
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 10px;
+}
+
+.nav-tabs ul li a:hover{
+  cursor: pointer;
+}
+
+.nav-tabs ul li.active {
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  border-bottom-color: #fff;
+}
+
