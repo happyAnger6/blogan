@@ -1,3 +1,9 @@
-<p>
-  auth works!
-</p>
+<ul class="nav nav-pills">
+  <li role="presentation" (click)="onSelect(0)">登 陆</li>
+  <li role="presentation" (click)="onSelect(1)">注 册</li>
+</ul>
+
+<div class="auth-tabs" [ngSwitch]="tabFlag">
+  <app-login *ngSwitchCase="1"></app-login>
+  <app-register ngSwitchDefault></app-register>
+</div>
