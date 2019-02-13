@@ -3,9 +3,10 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angul
 import {Observable, of, throwError} from 'rxjs';
 import {tap, delay, catchError} from 'rxjs/operators';
 
-import { Login_url } from '../api_endpoint';
+import { Login_url, Logout_url } from '../api_endpoint';
 import { User } from '../models/user';
 import { MessageService } from './message.service';
+import {BehaviorSubject, Subject} from "rxjs/Rx";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -18,24 +19,41 @@ export class AuthService {
   isLoggedIn = false;
   redirectUrl: string;
   user: User;
+  currentUser: Subject<User> =  new BehaviorSubject<User>(null);
   constructor(
     private http: HttpClient,
     private msgService: MessageService
   ) { }
 
+
+  public setCurrentUser(newUser: User) {
+    this.currentUser.next(newUser);
+  }
+
   login(user): Observable<User> {
     return this.http.post<User>(Login_url, user, httpOptions)
       .pipe(
-        tap(r => { this.log(`login resp=r`);
+        tap(r => {
+          this.log(`login resp=${r}`);
           this.isLoggedIn = true;
           this.user = r;
+          this.setCurrentUser(this.user);
         }),
         catchError(this.handleError<User>('login'))
       )
   }
 
-  logout(): void{
-    this.isLoggedIn = false;
+  logout(): Observable<User>{
+    return this.http.post<User>(Logout_url, this.user, httpOptions)
+      .pipe(
+        tap(r => {
+          this.log(`logout resp=${r}`);
+          this.isLoggedIn = false;
+          this.user = null;
+          this.setCurrentUser(this.user);
+        }),
+        catchError(this.handleError<User>('logout'))
+      )
   }
 
   private log(message:string) {
