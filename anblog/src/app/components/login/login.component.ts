@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
@@ -18,10 +19,12 @@ export class LoginComponent implements OnInit {
   errmsg: string;
   user: User = new User();
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    public router: Router
   ) { }
 
   ngOnInit() {
+    this.userForm.patchValue({'remeber':true});
   }
 
   onSubmit() {
@@ -33,6 +36,10 @@ export class LoginComponent implements OnInit {
     }).subscribe({
       next:
         r => {
+            if(this.authService.isLoggedIn) {
+                let redirect = this.authService.redirectUrl? this.authService.redirectUrl: '/home';
+                this.router.navigate([redirect]);
+            }
         },
       error:
         err => {

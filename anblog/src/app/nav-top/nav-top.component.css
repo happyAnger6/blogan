@@ -6,3 +6,7 @@ ul li {
   background-color: #0a001f;
 }
 
+ul li a:hover {
+  cursor: pointer;
+}
+

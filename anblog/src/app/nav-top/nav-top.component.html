@@ -11,7 +11,8 @@
     <button type="submit" class="btn btn-default">搜索</button>
   </form>
   <ul class="nav navbar-nav navbar-right">
-    <li><a routerLink="register" routerLinkActive="active">注册</a></li>
-    <li><a routerLink="login" routerLinkActive="active">登陆</a></li>
+    <li *ngIf="!curUser"><a routerLink="register" routerLinkActive="active">注册</a></li>
+    <li *ngIf="!curUser"><a routerLink="login" routerLinkActive="active">登陆</a></li>
+    <li *ngIf="curUser"><i class="fa fa-user" aria-hidden="true">你好!{{ curUser.name }}</i><a (click)="onLogout()">退出</a></li>
   </ul>
 </nav>
