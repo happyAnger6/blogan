@@ -10,11 +10,6 @@ import { MessageService } from './message.service';
 
 import { Category_url } from '../api_endpoint';
 
-const httpOptions1 = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  observe: "response" as "response"
-};
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -70,10 +65,9 @@ export class CategoryService {
 
   /** POST: add a new category to the server */
   addCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(Category_url, category, httpOptions1)
+    return this.http.post<Category>(Category_url, category, httpOptions)
       .pipe(
-      tap(resp => { this.log(`added category resp=${resp.body}`)} ),
-      map(resp => resp.body),
+      tap(resp => { this.log(`added category resp=${resp}`)} ),
       catchError(this.handleError<Category>('add Category'))
     );
   }

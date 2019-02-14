@@ -7,11 +7,6 @@ import { MessageService } from './message.service';
 import { Post } from '../models/post';
 import { Post_url } from '../api_endpoint';
 
-const httpOptions1 = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  observe: "response" as "response"
-};
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -52,10 +47,9 @@ export class PostService {
 
   /** POST: add a new post to the server */
   addPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(Post_url, post, httpOptions1)
+    return this.http.post<Post>(Post_url, post, httpOptions)
       .pipe(
-        tap(resp => { this.log(`added post resp=${resp.body}`)} ),
-        map(resp => resp.body),
+        tap(resp => { this.log(`added post resp=${resp}`)} ),
         catchError(this.handleError<Post>('add Post'))
       );
   }

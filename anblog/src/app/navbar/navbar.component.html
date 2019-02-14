@@ -9,7 +9,7 @@
       <a>{{ category.name }}</a>
     </li>
 
-  <li class="admin-menu">
+  <li class="admin-menu" *ngIf="user && user.type == 10">
   <a routerLink="admin">管理页面</a>
   </li>
 

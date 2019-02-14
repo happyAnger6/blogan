@@ -1,4 +1,5 @@
-from flask import request, jsonify
+from flask import request, jsonify, current_app
+from flask_login import current_user
 from flask_mongoengine.wtf import  model_form
 from bson.objectid import ObjectId
 
@@ -32,6 +33,8 @@ def post():
             posts = Post.objects
         return jsonify(posts)
     elif request.method == 'POST':
+        if not current_user.is_authenticated:
+            return current_app.login_manager.unauthorized()
         post_form = model_form(Post)
         data = request.json
         post_id = data.get('_id', None)
@@ -54,8 +57,14 @@ def post():
         else:
             return jsonify('failed.')
 
-@api_bp.route('/post/<string:post_id>', methods = [ 'GET', 'PUT' ])
+@api_bp.route('/post/<string:post_id>', methods = [ 'GET', 'PUT', 'DELETE' ])
 def post_post(post_id):
     if request.method == 'GET':
         post = Post.objects(id=post_id).first()
         return jsonify(post)
+    elif request.method == 'DELETE':
+        if not current_user.is_authenticated:
+            return current_app.login_manager.unauthorized()
+        post = Post.objects(id=post_id).get_or_404()
+        post.delete()
+        return jsonify('success.')

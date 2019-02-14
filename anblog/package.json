@@ -26,6 +26,7 @@
     "moment": "^2.24.0",
     "ng2-ckeditor": "^1.2.2",
     "ng2sf-tinymce": "^1.0.7",
+    "ngx-cookie-service": "^2.1.0",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.3.3",
     "social-share.js": "^1.0.16",

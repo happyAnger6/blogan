@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
-import {tap, delay, catchError} from 'rxjs/operators';
+import {tap, delay, catchError, map} from 'rxjs/operators';
 
 import { Login_url, Logout_url } from '../api_endpoint';
 import { User } from '../models/user';
@@ -9,7 +9,7 @@ import { MessageService } from './message.service';
 import {BehaviorSubject, Subject} from "rxjs/Rx";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable({

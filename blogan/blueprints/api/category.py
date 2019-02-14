@@ -1,4 +1,5 @@
-from flask import request, jsonify
+from flask import request, current_app, jsonify
+from flask_login import current_user
 from flask_mongoengine.wtf import  model_form
 from bson.objectid import ObjectId
 
@@ -12,6 +13,8 @@ def category():
         categories = Category.objects
         return jsonify(categories)
     elif request.method == 'POST':
+        if not current_user.is_authenticated:
+            return current_app.login_manager.unauthorized()
         category_form = model_form(Category)
         json_data = request.json
         json_data.update({'father': json_data['father']['$oid']});
@@ -32,6 +35,8 @@ def category_post(category_id):
         category = Category.objects(id=category_id)
         return jsonify(category)
     elif request.method == 'PUT':
+        if not current_user.is_authenticated:
+            return current_app.login_manager.unauthorized()
         category_form = model_form(Category)
         json_data = request.json
         json_data.update({'father': json_data['father']['$oid']});
@@ -44,6 +49,8 @@ def category_post(category_id):
         else:
             return jsonify('failed.')
     elif request.method == 'DELETE':
+        if not current_user.is_authenticated:
+            return current_app.login_manager.unauthorized()
         category = Category.objects(id=category_id).get_or_404()
         category.delete()
         return jsonify('success.')

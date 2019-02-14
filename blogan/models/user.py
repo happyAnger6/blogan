@@ -25,3 +25,6 @@ class User(db.Document, UserMixin):
 
    def validate_password(self, password):
       return check_password_hash(self.password_hash, password)
+
+   def json_ret(self):
+      return {'name': self.name, 'realname':self.realname, 'type': self.type, 'gold': self.gold};

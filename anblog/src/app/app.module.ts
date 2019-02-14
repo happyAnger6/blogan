@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
+import { httpInterceptorProviders } from './http-interceptors/index';
 import { InMemoryDataService } from './services/in-memory-data.service'
 
 import { AppComponent } from './app.component';
@@ -64,7 +66,7 @@ import { AuthComponent } from './components/auth/auth.component';
     AdminModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

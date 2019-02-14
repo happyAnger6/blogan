@@ -32,6 +32,8 @@ export class AdminPostItemComponent implements OnInit {
   }
 
   onDelete() {
+    this.postService.deletePost(this.post)
+      .subscribe();
     this.operFlag.emit(0);
   }
 

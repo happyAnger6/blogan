@@ -9,7 +9,7 @@ from blogan.utils.tools import json2formdata
 @api_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return jsonify('success.')
+        return jsonify(current_user.json_ret())
 
     json_data = request.json
     if request.method == 'POST':
@@ -17,11 +17,10 @@ def login():
         password = json_data['password']
         remember = json_data['remeber']
         user = User.objects(name=username).first()
-        print(user)
         if user:
             if username == user.name and user.validate_password(password):
                 login_user(user, remember)
-                return jsonify(user)
+                return jsonify(user.json_ret())
         else:
             return jsonify("user %s doesn't exist!" %(username)), 403
     return jsonify('failed.'), 403
@@ -44,7 +43,7 @@ def register():
     else:
         return jsonify(form.errors), 400
 
-@api_bp.route('/logout')
+@api_bp.route('/logout', methods=['POST'])
 @login_required
 def logout():
     logout_user()

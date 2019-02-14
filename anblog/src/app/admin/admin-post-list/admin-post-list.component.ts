@@ -34,8 +34,10 @@ export class AdminPostListComponent implements OnInit {
   }
 
   onOper(oper:number, post:Post) {
-    this.editFlag = true;
-    this.editPost = post;
+    if(oper != 0){
+      this.editFlag = true;
+      this.editPost = post;
+    }
   }
 
   onEditResult(oper:number) {
