@@ -22,6 +22,17 @@ def updatePostModel(model, form):
             elif k == 'type':
                 model.update(type = value)
 
+@api_bp.route('/post/category/<string:category_id>', methods = ['GET'])
+def postByCategory(category_id):
+    if request.method == 'GET':
+        page = request.args.get('page')
+        per_page = request.args.get('per_page')
+        if page and per_page:
+            posts = Post.objects(category=category_id).paginate(page=int(page), per_page=int(per_page)).items
+        else:
+            posts = Post.objects(category=category_id)
+        return jsonify(posts)
+
 @api_bp.route('/post', methods = ['GET', 'POST'])
 def post():
     if request.method == 'GET':

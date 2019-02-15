@@ -6,7 +6,7 @@
   </li>
 
     <li *ngFor="let category of topCategories" class="menu-item-category">
-      <a>{{ category.name }}</a>
+      <a routerLink="posts/category/{{category._id.$oid}}">{{ category.name }}</a>
     </li>
 
   <li class="admin-menu" *ngIf="user && user.type == 10">
