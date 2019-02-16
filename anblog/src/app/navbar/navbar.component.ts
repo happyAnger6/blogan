@@ -13,6 +13,7 @@ import { User } from '../models/user';
 export class NavbarComponent implements OnInit {
   allCategories: Category[];
   topCategories: Category[];
+  subCategories: Category[];
   user:User;
   constructor(
     private categoryService: CategoryService,
@@ -32,8 +33,26 @@ export class NavbarComponent implements OnInit {
         this.categoryService.getAllCategoriesByLevel(this.allCategories, 1)
           .subscribe(c => {
             this.topCategories = c;
+            for (let cate of this.topCategories) {
+              this.categoryService.getSubCategory(cate._id.$oid)
+                .subscribe(sub => {
+                  cate.subCategories = sub;
+                });
+            }
           });
       });
+  }
+
+  onEnterCategory(id: string) {
+      this.categoryService.getSubCategory(id)
+        .subscribe(c => {
+          this.subCategories = c;
+          console.log(c);
+        });
+  }
+
+  onLeaveCategory(id: string) {
+    this.subCategories = null;
   }
 
 }

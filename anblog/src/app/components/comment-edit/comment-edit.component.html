@@ -1,0 +1,19 @@
+<div class="edit-comment" *ngIf="post">
+  <form #commentForm="ngForm">
+    <div class="form-group">
+    <h5>评 论:</h5>
+    <ckeditor [(ngModel)]="comment.content" required name="comment_content"></ckeditor>
+    </div>
+    <div class="form-group">
+      <label for="name">你的名字:</label>
+      <input type="text" class="form-control" id="name"
+             required
+      [(ngModel)]="comment.author" name="name" #name="ngModel">
+    </div>
+    <div [hidden]="name.valid || name.pristine"
+         class="alert alert-danger">
+     请输入你的名字!
+    </div>
+    <button type="submit" class="btn btn-success" (click)="addComment()" [disabled]="!commentForm.form.valid">提 交</button>
+  </form>
+</div>

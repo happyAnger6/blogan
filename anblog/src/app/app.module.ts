@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { httpInterceptorProviders } from './http-interceptors/index';
-import { InMemoryDataService } from './services/in-memory-data.service'
+import { InMemoryDataService } from './services/in-memory-data.service';
+
+import { BsDropdownModule} from "ngx-bootstrap/dropdown";
+import { CKEditorModule } from 'ng2-ckeditor';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -31,6 +35,13 @@ import { SocialShareComponent } from './components/social-share/social-share.com
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { CategoryPostsComponent } from './components/category-posts/category-posts.component';
+import { SideBarMainComponent } from './side-bar/side-bar-main/side-bar-main.component';
+import { MyHomePagesComponent } from './side-bar/my-home-pages/my-home-pages.component';
+import { MyProjectsListComponent } from './side-bar/my-projects-list/my-projects-list.component';
+import { BloganSourcesComponent } from './side-bar/blogan-sources/blogan-sources.component';
+import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -53,9 +64,20 @@ import { AuthComponent } from './components/auth/auth.component';
     LoginComponent,
     RegisterComponent,
     AuthComponent,
+    CategoryPostsComponent,
+    SideBarMainComponent,
+    MyHomePagesComponent,
+    MyProjectsListComponent,
+    BloganSourcesComponent,
+    CommentEditComponent,
+    CommentListComponent,
   ],
   imports: [
+    BsDropdownModule.forRoot(),
+    CKEditorModule,
     BrowserModule,
+    CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
  /*   HttpClientInMemoryWebApiModule,

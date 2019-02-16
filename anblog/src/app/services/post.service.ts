@@ -25,8 +25,22 @@ export class PostService {
       .pipe(
         tap(_ => this.log('fetched posts.')),
         catchError(this.handleError<Post[]>('get all posts'))
-      )
-
+      );
+  }
+  getPostsPageByCategory(category: string, page:number, per_page:number): Observable<Post[]> {
+    const url = `${Post_url}?category_id=${category}&page=${page}&per_page=${per_page}`;
+    return this.sendGetPostsRequest(url);
+  }
+  getPostsByCategory(category: string): Observable<Post[]> {
+    const url = `${Post_url}?category_id=${category}`;
+    return this.sendGetPostsRequest(url);
+  }
+  sendGetPostsRequest(url: string) {
+    return this.http.get<Post[]>(url)
+      .pipe(
+        tap(_ => this.log('fetched posts.')),
+        catchError(this.handleError<Post[]>('get posts'))
+      );
   }
   getAllPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(Post_url)
@@ -90,7 +104,7 @@ export class PostService {
       'Something bad happened; please try again later.');
   };
 */
-  private log(message:string) {
+  private log(message: string) {
     this.messageService.add(message);
   }
   /**

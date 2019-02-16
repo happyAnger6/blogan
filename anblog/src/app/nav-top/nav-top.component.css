@@ -10,3 +10,6 @@ ul li a:hover {
   cursor: pointer;
 }
 
+.navbar-right a {
+  font-size: 1em;
+}

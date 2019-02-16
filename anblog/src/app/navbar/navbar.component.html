@@ -1,18 +1,14 @@
-<div class="row">
-<nav id="main-nav" class="col-md-12 col-sm-12 menu-nav">
-  <ul id="main-nav-menu" class="menu">
-  <li class="menu-item-home">
-   <a routerLink="/">首页</a>
-  </li>
+<div class="col-md-12 col-sm-12 menu-nav">
 
-    <li *ngFor="let category of topCategories" class="menu-item-category">
-      <a routerLink="posts/category/{{category._id.$oid}}">{{ category.name }}</a>
-    </li>
-
-  <li class="admin-menu" *ngIf="user && user.type == 10">
-  <a routerLink="admin">管理页面</a>
-  </li>
-
+<div class="btn-group" dropdown *ngFor="let c of topCategories">
+  <button id="button-basic" dropdownToggle type="button" class="btn btn-info dropdown-toggle"
+          aria-controls="dropdown-basic">
+    {{ c.name }} <span class="caret"></span>
+  </button>
+  <ul id="dropdown-basic" class="dropdown-menu"
+      role="menu" aria-labelledby="button-basic" *ngIf="c.subCategories">
+    <li role="menuitem" *ngFor="let sub of c.subCategories"><a class="dropdown-item" routerLink="/post/category/{{sub._id.$oid}}">{{ sub.name }}</a></li>
   </ul>
-</nav>
+</div>
+
 </div>

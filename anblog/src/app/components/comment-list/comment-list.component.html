@@ -1,0 +1,4 @@
+<div class="comment-item" *ngFor="let c of comments">
+  <a>{{ c.author }}</a>
+  <p [innerHTML]="c.content"></p>
+</div>

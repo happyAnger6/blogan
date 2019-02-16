@@ -29,6 +29,12 @@ def category():
         else:
             return jsonify(form.errors), 400
 
+@api_bp.route('/subcategory/<string:father_category_id>', methods = [ 'GET'])
+def subcategory_post(father_category_id):
+    if request.method == 'GET':
+        category = Category.objects(father=father_category_id)
+        return jsonify(category)
+
 @api_bp.route('/category/<string:category_id>', methods = [ 'GET', 'PUT', 'DELETE'])
 def category_post(category_id):
     if request.method == 'GET':

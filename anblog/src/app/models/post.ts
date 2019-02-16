@@ -1,4 +1,5 @@
 import { ObjectId } from './objectid';
+import { Comment } from './comment';
 
 export class Post{
   _id: ObjectId;
@@ -10,7 +11,7 @@ export class Post{
   author: string;
   publish_data: any;
   tags: Array<string>;
-  comments: Array<string>;
+  comments: Array<Comment>;
   type: number;
   showFlag: number;
 }

@@ -8,8 +8,11 @@
 </div>
 
   <div class="post-content">
-    <p>{{ post.content }}</p>
+    <p [innerHTML]="post.content"></p>
   </div>
 <app-social-share></app-social-share>
+
+  <app-comment-list [post]="post"></app-comment-list>
+<app-comment-edit [post]="post"></app-comment-edit>
 </div>
 

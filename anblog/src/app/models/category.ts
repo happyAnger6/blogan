@@ -1,5 +1,10 @@
 import { ObjectId } from './objectid';
 
+class SubCategory {
+  _id: ObjectId;
+  name: string;
+}
+
 export class Category {
   _id: ObjectId;
   name: string;
@@ -9,4 +14,6 @@ export class Category {
   level: number;
   children: Array<string>;
   showFlag: number;
+  subCategories: Array<Category>;
 }
+

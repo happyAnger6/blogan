@@ -9,6 +9,7 @@ import { Categories } from '../mock-datas';
 import { MessageService } from './message.service';
 
 import { Category_url } from '../api_endpoint';
+import { SubCategory_url } from '../api_endpoint';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -51,6 +52,14 @@ export class CategoryService {
       .pipe(
         tap(_ => this.log('fetched categories.')),
         catchError(this.handleError<Category[]>('get all categories'))
+      );
+  }
+  getSubCategory(id: string): Observable<Category[]> {
+    const url = `${SubCategory_url}/${id}`;
+    return this.http.get<Category[]>(url)
+      .pipe(
+        tap(_ => this.log(`fetched subcategory id=${id}`)),
+        catchError(this.handleError<Category[]>('get category'))
       );
   }
 

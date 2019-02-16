@@ -4,7 +4,7 @@ from flask_mongoengine.wtf import  model_form
 from bson.objectid import ObjectId
 
 from blogan.blueprints.api import api_bp
-from blogan.models import Post, Category, User
+from blogan.models import Post, Category, User, Comment
 from blogan.utils.tools import json2formdata
 
 def updatePostModel(model, form):
@@ -33,13 +33,32 @@ def postByCategory(category_id):
             posts = Post.objects(category=category_id)
         return jsonify(posts)
 
+@api_bp.route('/post/<string:post_id>/comment', methods = ['GET', 'POST'])
+def post_comment(post_id):
+    if request.method == 'POST':
+        post = Post.objects(id=post_id).get_or_404()
+        comment = Comment(**request.json)
+        post.comments.append(comment)
+        post.save()
+        return jsonify('success.')
+    if request.method == 'GET':
+        post = Post.objects(id=post_id).only('comments').first()
+        return jsonify(post.comments)
+
+
 @api_bp.route('/post', methods = ['GET', 'POST'])
 def post():
     if request.method == 'GET':
         page = request.args.get('page')
         per_page = request.args.get('per_page')
+        category_id = request.args.get('category_id')
         if page and per_page:
-            posts = Post.objects.paginate(page=int(page), per_page=int(per_page)).items
+            if category_id:
+                posts = Post.objects(category=category_id).paginate(page=int(page), per_page=int(per_page)).items
+            else:
+                posts = Post.objects.paginate(page=int(page), per_page=int(per_page)).items
+        elif category_id:
+            posts = Post.objects(category=category_id)
         else:
             posts = Post.objects
         return jsonify(posts)
