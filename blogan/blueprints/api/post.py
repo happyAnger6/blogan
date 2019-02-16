@@ -40,7 +40,7 @@ def post_comment(post_id):
         comment = Comment(**request.json)
         post.comments.append(comment)
         post.save()
-        return jsonify('success.')
+        return jsonify(comment)
     if request.method == 'GET':
         post = Post.objects(id=post_id).only('comments').first()
         return jsonify(post.comments)

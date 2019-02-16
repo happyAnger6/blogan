@@ -1,4 +1,23 @@
-<div class="comment-item" *ngFor="let c of comments">
-  <a>{{ c.author }}</a>
-  <p [innerHTML]="c.content"></p>
+<div class="comment-list">
+
+  <div class="comment-num">
+    <h4>{{ comments.length }} 个评论</h4>
+  </div>
+
+<div class="comment-items">
+  <div class="comment-item" *ngFor="let c of comments">
+      <div class="comment-head">
+        <p><a>{{ c.author }}</a></p>
+      </div>
+      <div class="comment-body">
+         <p [innerHTML]="c.content"></p>
+      </div>
+    <div class="comment-footer">
+      <div class="meta">
+        <span class="pull-right">{{ c.publish_data.$date | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>

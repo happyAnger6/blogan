@@ -11,16 +11,12 @@ import { CommentService } from '../../services/comment.service';
 })
 export class CommentListComponent implements OnInit {
   @Input() post: Post;
-  comments: Comment[] = [];
+  @Input() comments: Comment[] = [];
   constructor(
     private commentService: CommentService
   ) { }
 
   ngOnInit() {
-    this.commentService.getAllCommentsByPost(this.post._id.$oid)
-      .subscribe(c => {
-        this.comments = c;
-      });
   }
 
 }

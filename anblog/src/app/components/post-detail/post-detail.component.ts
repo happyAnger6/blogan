@@ -25,4 +25,8 @@ export class PostDetailComponent implements OnInit {
       );
   }
 
+  addComment(c) {
+    this.post.comments.push(c);
+  }
+
 }
