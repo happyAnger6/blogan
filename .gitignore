@@ -9,3 +9,6 @@ __pycache__/
 /angular2-schema-form-demo
 /venv
 /bluelog
+blogan/static/
+/blogan/static
+/blogan/templates/

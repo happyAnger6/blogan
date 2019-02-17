@@ -7,6 +7,7 @@ from faker import Faker
 
 from blogan.settings import config
 from blogan.blueprints.api import api_bp
+from blogan.blueprints.index import index_bp
 from blogan.extensions import db, login_manager
 from blogan.models import model_lst, User, Category, Post
 from blogan import fakers
@@ -35,6 +36,7 @@ def register_extensions(app):
 
 def register_blueprints(app):
     app.register_blueprint(api_bp, url_prefix='/api')
+    app.register_blueprint(index_bp)
 
 def register_shell_context(app, db):
     @app.shell_context_processor
