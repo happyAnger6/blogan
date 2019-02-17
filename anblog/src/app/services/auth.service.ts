@@ -6,7 +6,7 @@ import {tap, delay, catchError, map} from 'rxjs/operators';
 import { Login_url, Logout_url } from '../api_endpoint';
 import { User } from '../models/user';
 import { MessageService } from './message.service';
-import {BehaviorSubject, Subject} from "rxjs/Rx";
+import { BehaviorSubject, Subject } from "rxjs/Rx";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,11 +20,11 @@ export class AuthService {
   redirectUrl: string;
   user: User;
   currentUser: Subject<User> =  new BehaviorSubject<User>(null);
+
   constructor(
     private http: HttpClient,
     private msgService: MessageService
   ) { }
-
 
   public setCurrentUser(newUser: User) {
     this.currentUser.next(newUser);

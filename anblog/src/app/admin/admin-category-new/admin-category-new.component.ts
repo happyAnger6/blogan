@@ -76,7 +76,7 @@ export class AdminCategoryNewComponent implements OnInit {
     this.val2category(value, this.newCategory);
     this.categoryService.addCategory(this.newCategory)
       .subscribe(category => {
-        this.categories.push(category);
+        this.categoryService.addAndPublishCategory(category);
         this.updateSchema();
       });
   }

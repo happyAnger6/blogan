@@ -30,6 +30,7 @@ export class AdminCategoryItemComponent implements OnInit {
     this.categoryService.deleteCategory(this.category)
       .subscribe(c => {
         this.deleteFlag.emit(_id);
+        this.categoryService.delAndPublishCategory(this.category);
       });
   }
   onSave() {

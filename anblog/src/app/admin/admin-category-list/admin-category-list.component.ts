@@ -36,6 +36,7 @@ export class AdminCategoryListComponent implements OnInit {
     this.editFlag = false;
     this.categoryService.deleteCategory(category)
       .subscribe(c => {
+        this.categoryService.delAndPublishCategory(category);
       });
   }
   onSave() {

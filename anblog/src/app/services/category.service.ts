@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs/index';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 
+import { BehaviorSubject, Subject } from "rxjs/Rx";
 import { catchError, map, tap } from 'rxjs/internal/operators';
 import { Category } from '../models/category';
-import { Categories } from '../mock-datas';
 
 import { MessageService } from './message.service';
 
@@ -19,11 +19,28 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CategoryService {
+  allCategories: Category[] = [];
+  allCategories$  = new BehaviorSubject<Category[]>([]);
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-    getAllSubCategories(categories: Category[], father: Category): Observable<Category[]> {
+  public addAndPublishCategory(category: Category) {
+    this.allCategories.push(category);
+    this.publishAllCategories();
+  }
+
+  public delAndPublishCategory(category: Category) {
+    this.allCategories = this.allCategories.filter(x => x._id.$oid != category._id.$oid);
+    this.publishAllCategories();
+  }
+
+  private publishAllCategories() {
+    this.allCategories$.next(this.allCategories);
+  }
+
+  getAllSubCategories(categories: Category[], father: Category): Observable<Category[]> {
     let cates: Category[] = [];
     for (let c of categories) {
       if (c.name == 'root')
@@ -35,9 +52,9 @@ export class CategoryService {
     return of(cates);
   }
 
-  getAllCategoriesByLevel(categories: Category[], level: number): Observable<Category[]> {
+  getAllCategoriesByLevel(level: number): Observable<Category[]> {
     let cates: Category[] = [];
-    for (let c of categories) {
+    for (let c of this.allCategories) {
       if (c.name == 'root')
         continue;
       if (c.level == level) {
@@ -48,12 +65,19 @@ export class CategoryService {
   }
 
   getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(Category_url)
-      .pipe(
-        tap(_ => this.log('fetched categories.')),
-        catchError(this.handleError<Category[]>('get all categories'))
-      );
+    if(this.allCategories.length == 0 ){
+      this.http.get<Category[]>(Category_url)
+        .pipe(
+          tap(_ => this.log('fetched all categories.')),
+          catchError(this.handleError<Category[]>('get all categories'))
+        ).subscribe(c => {
+          this.allCategories = c;
+          this.publishAllCategories();
+      });
+    }
+    return this.allCategories$;
   }
+
   getSubCategory(id: string): Observable<Category[]> {
     const url = `${SubCategory_url}/${id}`;
     return this.http.get<Category[]>(url)

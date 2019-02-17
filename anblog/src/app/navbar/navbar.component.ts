@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
     this.categoryService.getAllCategories()
       .subscribe(c => {
         this.allCategories = c;
-        this.categoryService.getAllCategoriesByLevel(this.allCategories, 1)
+        this.categoryService.getAllCategoriesByLevel( 1)
           .subscribe(c => {
             this.topCategories = c;
             for (let cate of this.topCategories) {
