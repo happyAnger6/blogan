@@ -42,6 +42,10 @@ import { MyProjectsListComponent } from './side-bar/my-projects-list/my-projects
 import { BloganSourcesComponent } from './side-bar/blogan-sources/blogan-sources.component';
 import { CommentEditComponent } from './components/comment-edit/comment-edit.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
+import { CategorySideScrollComponent } from './components/category-side-scroll/category-side-scroll.component';
+import { CategorySideNavComponent } from './components/category-side-nav/category-side-nav.component';
+import { CategorySideMenuComponent } from './components/category-side-menu/category-side-menu.component';
+import { CategoryCSMainComponent } from './components/category-c-s-main/category-c-s-main.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,10 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
     BloganSourcesComponent,
     CommentEditComponent,
     CommentListComponent,
+    CategorySideScrollComponent,
+    CategorySideNavComponent,
+    CategorySideMenuComponent,
+    CategoryCSMainComponent,
   ],
   imports: [
     BsDropdownModule.forRoot(),
