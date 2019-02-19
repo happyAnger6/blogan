@@ -12,3 +12,4 @@ __pycache__/
 blogan/static/
 /blogan/static
 /blogan/templates/
+/static
