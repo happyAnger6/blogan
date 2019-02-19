@@ -59,6 +59,8 @@ export class AdminPostEditComponent implements OnInit {
     post.showFlag = this.iFlag2ModelFlag(value.showFlag);
     post.category = this.findCategoryIdByName(value.category);
     post.author = "admin";
+    post.chaper = value.chapter;
+    post.section = value.section;
   }
 
   iType2ModelType(t: string): number{

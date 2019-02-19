@@ -46,6 +46,9 @@ import { CategorySideScrollComponent } from './components/category-side-scroll/c
 import { CategorySideNavComponent } from './components/category-side-nav/category-side-nav.component';
 import { CategorySideMenuComponent } from './components/category-side-menu/category-side-menu.component';
 import { CategoryCSMainComponent } from './components/category-c-s-main/category-c-s-main.component';
+import { SpyDirective } from './spy.directive';
+import { CategoryNormalPostsComponent } from './components/category-normal-posts/category-normal-posts.component';
+import { CategoryChapterPostsComponent } from './components/category-chapter-posts/category-chapter-posts.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +82,9 @@ import { CategoryCSMainComponent } from './components/category-c-s-main/category
     CategorySideNavComponent,
     CategorySideMenuComponent,
     CategoryCSMainComponent,
+    SpyDirective,
+    CategoryNormalPostsComponent,
+    CategoryChapterPostsComponent,
   ],
   imports: [
     BsDropdownModule.forRoot(),

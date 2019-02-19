@@ -1,8 +1,4 @@
-<div class="col-md-8 col-sm-8">
+<div class="col-md-8 col-sm-8" appSpy>
   <app-post-list [posts]="posts"></app-post-list>
   <tools-page-nav *ngIf="total_nums > 5" [total_num]="total_nums" [per_num]="5" (cur_page_e)="onSelectPage($event)"></tools-page-nav>
-</div>
-
-<div class="cold-md-4 col-sm-4">
-  <app-side-bar-main></app-side-bar-main>
 </div>

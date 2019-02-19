@@ -38,7 +38,7 @@ def subcategory_post(father_category_id):
 @api_bp.route('/category/<string:category_id>', methods = [ 'GET', 'PUT', 'DELETE'])
 def category_post(category_id):
     if request.method == 'GET':
-        category = Category.objects(id=category_id)
+        category = Category.objects(id=category_id).first()
         return jsonify(category)
     elif request.method == 'PUT':
         if not current_user.is_authenticated:

@@ -15,3 +15,4 @@ export class Post{
   type: number;
   showFlag: number;
 }
+

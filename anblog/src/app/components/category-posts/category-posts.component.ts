@@ -19,7 +19,7 @@ export class CategoryPostsComponent implements OnInit {
   posts: Post[];
   total_nums: number = 0;
   category_id: string;
-  category: Category[];
+  category: Category = null;
   constructor(private route: ActivatedRoute,
               private router: Router,
               private postService: PostService,
@@ -32,8 +32,7 @@ export class CategoryPostsComponent implements OnInit {
           this.category_id = params.get('id');
           this.categoryService.getCategory(this.category_id)
             .subscribe(c => {
-              this.category = [c];
-              console.log('ccccccccc', this.category);
+              this.category = c;
             });
           return this.postService.getPostsByCategory(this.category_id);
       }

@@ -1,0 +1,23 @@
+<div class="col-md-4 col-sm-4 side-menu" *ngIf="posts != []">
+  <div class="c-name"><i class="fa fa-home">{{ category.name }}</i></div>
+
+  <div class="c-s">
+  <ul class="chapter">
+    <li *ngFor="let c of getPostsByLevel(0)">
+      <a>
+        <i class="fa fa-plus-square-o" (click)="onExpand(c.chaper)" *ngIf="!isExpanded(c.chaper)"></i>
+        <i class="fa fa-minus-square-o" (click)="onExpand(c.chaper)" *ngIf="isExpanded(c.chaper)"></i>
+        {{ c.title }}</a>
+      <ul class="sections" *ngIf="isExpanded(c.chaper)">
+       <li *ngFor="let s of getPostsByChapter(c.chaper)">
+         <a>{{s.title}}</a>
+       </li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+
+</div>
+
+<div class="col-md-8 col-sm-8">
+</div>
