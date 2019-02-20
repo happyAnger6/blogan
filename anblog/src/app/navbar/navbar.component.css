@@ -1,0 +1,31 @@
+.menu-nav {
+  margin-bottom: 0;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+ul.top-category li {
+  background-color: #3c3c3c;
+}
+
+ul.top-category a {
+  color: #fefefe;
+}
+
+ul.sub-category a {
+  color: #fcfcfc;
+}
+
+ul.sub-category li {
+  background-color: #66512c;
+}
+
+ul.top-category li.current {
+  background-color: #e38d13;
+}
+
+ul.sub-category li.current {
+  background-color: #fdbe3d;
+}

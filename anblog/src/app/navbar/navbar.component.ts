@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
@@ -14,10 +15,13 @@ export class NavbarComponent implements OnInit {
   allCategories: Category[];
   topCategories: Category[];
   subCategories: Category[];
+  curTopCategory: Category = null;
+  curSubCategory: Category = null;
   user: User;
   constructor(
     private categoryService: CategoryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: Router
   ) {
   }
 
@@ -43,11 +47,24 @@ export class NavbarComponent implements OnInit {
       });
   }
 
+  onSelectTopCategory(category: Category) {
+    this.curTopCategory = category;
+    this.categoryService.getSubCategory(category._id.$oid)
+      .subscribe(c => {
+        this.subCategories = c;
+      });
+    this.route.navigate(['/post/category', category._id.$oid]);
+  }
+
+  onSelectSubCategory(category: Category) {
+    this.curSubCategory = category;
+    this.route.navigate(['/post/category', category._id.$oid]);
+  }
+
   onEnterCategory(id: string) {
       this.categoryService.getSubCategory(id)
         .subscribe(c => {
           this.subCategories = c;
-          console.log(c);
         });
   }
 

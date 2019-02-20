@@ -96,6 +96,7 @@ export class CategoryChapterPostsComponent implements OnInit, OnChanges {
 
   onSelectChapter(c: number) {
     this.curChapter = c;
+    this.onExpand(c);
     this.getCurPost(c, 0);
   }
 

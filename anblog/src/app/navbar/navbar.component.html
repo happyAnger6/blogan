@@ -1,5 +1,13 @@
 <div class="col-md-12 col-sm-12 menu-nav">
 
+  <ul class="nav nav-tabs top-category">
+    <li role="presentation" *ngFor="let c of topCategories" [class.current]="curTopCategory && c._id.$oid === curTopCategory._id.$oid"><a (click)="onSelectTopCategory(c)">{{ c.name }}</a></li>
+  </ul>
+
+  <ul class="nav nav-tabs sub-category" *ngIf="subCategories">
+    <li role="presentation" *ngFor="let s of subCategories" [class.current]="curSubCategory && s._id.$oid === curSubCategory._id.$oid"><a (click)="onSelectSubCategory(s)">{{ s.name }}</a></li>
+  </ul>
+  <!--
 <div class="btn-group" dropdown *ngFor="let c of topCategories">
   <button id="button-basic" dropdownToggle type="button" class="btn btn-info dropdown-toggle"
           aria-controls="dropdown-basic">
@@ -10,5 +18,5 @@
     <li role="menuitem" *ngFor="let sub of c.subCategories"><a class="dropdown-item" routerLink="/post/category/{{sub._id.$oid}}">{{ sub.name }}</a></li>
   </ul>
 </div>
-
+-->
 </div>

@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs top-category">
+  <li role="presentation" *ngFor="let tc of categories"><a (click)="onSelectTopCategory(tc._id.$oid)">{{ tc.name }}</a></li>
+</ul>
+
+
+<div class="col-md-12 col-sm-12" *ngIf="posts">
+  <app-post-list [posts]="posts"></app-post-list>
+  <tools-page-nav *ngIf="total_nums > 5" [total_num]="total_nums" [per_num]="5" (cur_page_e)="onSelectPage($event)"></tools-page-nav>
+</div>
+
