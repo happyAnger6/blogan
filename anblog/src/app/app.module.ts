@@ -10,6 +10,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 
 import { BsDropdownModule} from "ngx-bootstrap/dropdown";
 import { CKEditorModule } from 'ng2-ckeditor';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -90,6 +91,7 @@ import { NavbarTabsComponent } from './components/navbar-tabs/navbar-tabs.compon
   ],
   imports: [
     BsDropdownModule.forRoot(),
+    DlDateTimePickerDateModule,
     CKEditorModule,
     BrowserModule,
     CommonModule,

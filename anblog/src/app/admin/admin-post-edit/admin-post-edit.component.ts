@@ -16,7 +16,7 @@ export class AdminPostEditComponent implements OnInit {
   @Input() post: Post = null;
   @Output() editFlag = new EventEmitter<number>();
   categories: Category[];
-
+  curtime: any;
   constructor(private postService: PostService,
               private categoryService: CategoryService) { }
 
@@ -77,6 +77,8 @@ export class AdminPostEditComponent implements OnInit {
 
   addPost(val) {
     this.val2post(val, this.post);
+    console.log(this.post.publish_data);
+    console.log('ccc',this.curtime);
     this.postService.addPost(this.post)
       .subscribe();
     this.editFlag.emit(1);

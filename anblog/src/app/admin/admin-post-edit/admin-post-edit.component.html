@@ -5,6 +5,7 @@
 <p>
   {{value | json}}
 </p>
+  <dl-date-time-picker [(ngModel)]="curtime"></dl-date-time-picker>
 <button (click)="addPost(value)">保 存</button>
 <button (click)="onCancel(value)">取 消</button>
 </div>

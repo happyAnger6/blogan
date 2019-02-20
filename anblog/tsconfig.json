@@ -12,7 +12,8 @@
     "importHelpers": true,
     "target": "es5",
     "types": [
-      "node"
+      "node",
+      "jquery"
     ],
     "typeRoots": [
       "node_modules/@types"

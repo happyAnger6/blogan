@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CKEditorModule } from 'ng2-ckeditor';
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from 'angular2-schema-form';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 
 import { AdminComponent } from './admin.component';
 import { AdminCategoryComponent } from './admin-category/admin-category.component';
@@ -24,6 +25,7 @@ import { ToolsModule } from '../tools/tools.module';
 @NgModule({
   imports: [
     SchemaFormModule.forRoot(),
+    DlDateTimePickerDateModule,
     CKEditorModule,
     HttpClientModule,
     CommonModule,
