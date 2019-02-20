@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   allCategories: Category[];
   topCategories: Category[];
   subCategories: Category[];
-  user:User;
+  user: User;
   constructor(
     private categoryService: CategoryService,
     private authService: AuthService

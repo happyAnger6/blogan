@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { Category } from "../../models/category";
 import { Post } from "../../models/post";
 
@@ -9,30 +9,52 @@ import { PostService } from '../../services/post.service';
   templateUrl: './category-chapter-posts.component.html',
   styleUrls: ['./category-chapter-posts.component.css']
 })
-export class CategoryChapterPostsComponent implements OnInit {
+export class CategoryChapterPostsComponent implements OnInit, OnChanges {
   @Input() category: Category;
   posts: Post[] = [];
-  c_s_posts: Post[][];
   expandFlags: number[] = [];
   curChapter: number;
   curSection: number;
+  curPost: Post;
   constructor(
     private postService: PostService
   ) { }
+
+  initData() {
+    this.expandFlags = [];
+    this.curChapter = -1;
+    this.curSection = -1;
+    this.curPost = null;
+    this.posts = [];
+    this.postService.getPostsByCategory(this.category._id.$oid)
+      .subscribe(p => {
+        this.posts = p;
+      });
+  }
 
   ngOnInit() {
     this.postService.getPostsByCategory(this.category._id.$oid)
       .subscribe(p => {
         this.posts = p;
-      })
+      });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      if (propName === "category") {
+        this.category = changes[propName].currentValue;
+      }
+    }
+    this.initData();
   }
 
   onExpand(c: number) {
-    let index = this.expandFlags.indexOf(c)
-    if(-1 == index) {
-      this.expandFlags.push(c)
+    const index = this.expandFlags.indexOf(c);
+    console.log('expand', index, c);
+    if (-1 === index) {
+      this.expandFlags.push(c);
     } else {
-      this.expandFlags.splice(index, 1)
+      this.expandFlags.splice(index, 1);
     }
   }
 
@@ -46,25 +68,41 @@ export class CategoryChapterPostsComponent implements OnInit {
   getPostsByLevel(level: number): Post[]{
     let posts = [];
     for (let p of this.posts) {
-      if (p.section == level) {
-        posts.push(p)
+      if (p.section === level) {
+        posts.push(p);
       }
     }
     return posts;
   }
 
-  getPostsByChapter(chapter: number): Post[] {
-    console.log('ccccccc', chapter);
-    let posts = [];
+  getCurPost(c: number, s: number): Post{
     for (let p of this.posts) {
-      console.log('ppp', p.chapter);
-      if (p.chaper == chapter) {
-        console.log('push', p);
-        posts.push(p)
+      if (p.section === s && p.chapter === c) {
+        this.curPost = p;
       }
     }
-    console.log('ccccccc', posts, this.posts);
+    return this.curPost;
+  }
+
+  getPostsByChapter(chapter: number): Post[] {
+    let posts = [];
+    for (let p of this.posts) {
+      if (p.chapter === chapter && p.section !== 0) {
+        posts.push(p);
+      }
+    }
     return posts;
+  }
+
+  onSelectChapter(c: number) {
+    this.curChapter = c;
+    this.getCurPost(c, 0);
+  }
+
+  onSelectSection(c:number, s:number) {
+    this.curChapter = c;
+    this.curSection = s;
+    this.getCurPost(c, s);
   }
 
 }

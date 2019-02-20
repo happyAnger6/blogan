@@ -1,16 +1,16 @@
-<div class="col-md-4 col-sm-4 side-menu" *ngIf="posts != []">
+<div class="col-md-4 col-sm-4 side-menu" *ngIf="posts != []" appSpy>
   <div class="c-name"><i class="fa fa-home">{{ category.name }}</i></div>
 
   <div class="c-s">
   <ul class="chapter">
-    <li *ngFor="let c of getPostsByLevel(0)">
-      <a>
-        <i class="fa fa-plus-square-o" (click)="onExpand(c.chaper)" *ngIf="!isExpanded(c.chaper)"></i>
-        <i class="fa fa-minus-square-o" (click)="onExpand(c.chaper)" *ngIf="isExpanded(c.chaper)"></i>
+    <li class="l-chapter" [class.current]="curChapter == c.chapter" *ngFor="let c of getPostsByLevel(0)">
+      <a class="chapter-name" (click)="onSelectChapter(c.chapter)">
+        <i class="fa fa-plus-square-o" (click)="onExpand(c.chapter)" *ngIf="!isExpanded(c.chapter)"></i>
+        <i class="fa fa-minus-square-o" (click)="onExpand(c.chapter)" *ngIf="isExpanded(c.chapter)"></i>
         {{ c.title }}</a>
-      <ul class="sections" *ngIf="isExpanded(c.chaper)">
-       <li *ngFor="let s of getPostsByChapter(c.chaper)">
-         <a>{{s.title}}</a>
+      <ul class="sections" *ngIf="isExpanded(c.chapter)">
+       <li class="l-sections" [class.current]="curSection == s.section && curChapter == s.chapter" *ngFor="let s of getPostsByChapter(c.chapter)">
+         <a (click)="onSelectSection(s.chapter, s.section)">{{s.title}}</a>
        </li>
       </ul>
     </li>
@@ -19,5 +19,20 @@
 
 </div>
 
-<div class="col-md-8 col-sm-8">
+<div class="col-md-8 col-sm-8" *ngIf="curPost">
+  <div class="post-header">
+    <h1>{{ curPost.title }}</h1>
+  </div>
+
+  <div class="post-meta">
+    {{ curPost.publish_data.$date | date:'yyyy-MM-dd HH:mm:ss'}}
+  </div>
+
+  <div class="post-content">
+    <p [innerHTML]="curPost.content"></p>
+  </div>
+  <app-social-share></app-social-share>
+
+  <app-comment-list [post]="curPost" [comments]="curPost.comments"></app-comment-list>
+  <app-comment-edit [post]="curPost" (comment_e)="addComment($event)"></app-comment-edit>
 </div>

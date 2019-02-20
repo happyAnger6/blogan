@@ -15,7 +15,7 @@ class Post(db.Document):
     title = db.StringField(required=True)
     content = db.StringField()
     category = db.ReferenceField(Category, reverse_delete_rule=db.CASCADE)
-    chaper = db.IntField()
+    chapter = db.IntField()
     section = db.IntField()
     author = db.ReferenceField(User, reverse_delete_rule=db.CASCADE)
     publish_data = db.DateTimeField(default=datetime.datetime.utcnow)

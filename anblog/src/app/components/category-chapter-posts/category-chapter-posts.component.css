@@ -50,3 +50,33 @@ a{
 a:visited {
   color: #9B59B6;
 }
+
+.chapter .l-chapter a{
+  line-height: 40px;
+}
+
+ul .sections {
+  margin-left: 40px;
+}
+
+.sections li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+.sections li a {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+li a:hover {
+  background-color: #c1e2b3;
+}
+
+ul.chapter li.current a.chapter-name{
+  background-color: #fdbe3d;
+}
+
+ul.sections li.current {
+  background-color: #faebcc;
+}

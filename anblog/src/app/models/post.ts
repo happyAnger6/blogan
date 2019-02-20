@@ -6,7 +6,7 @@ export class Post{
   title: string;
   content: string;
   category: ObjectId;
-  chaper: number;
+  chapter: number;
   section: number;
   author: string;
   publish_data: any;
