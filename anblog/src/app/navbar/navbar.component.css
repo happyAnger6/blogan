@@ -1,31 +1,49 @@
 .menu-nav {
-  margin-bottom: 0;
+  margin-bottom: 1em;
 }
 
 a:hover {
   cursor: pointer;
 }
 
+ul.top-category li:hover {
+  background-color: #ffffff;
+}
+
 ul.top-category li {
-  background-color: #3c3c3c;
+  background-color: #ffffff;
 }
 
 ul.top-category a {
-  color: #fefefe;
+  color: #000000;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 30px;
 }
 
 ul.sub-category a {
-  color: #fcfcfc;
+  color: #000000;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
 }
 
 ul.sub-category li {
-  background-color: #66512c;
+  background-color: #fcfcfc;
 }
 
 ul.top-category li.current {
-  background-color: #e38d13;
+  background-color: #000000;
 }
 
 ul.sub-category li.current {
-  background-color: #fdbe3d;
+  background-color: #000000;
+}
+
+ul.top-category li.current a{
+  color: #FFFFFF;
+}
+
+ul.sub-category li.current a{
+  color: #ffffff;
 }

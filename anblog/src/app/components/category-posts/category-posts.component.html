@@ -1,8 +1,12 @@
-<div class="col-md-8 col-sm-8" *ngIf="category && category.type == 0">
+<div class="posts-lists">
+
+<div class="col-md-12 col-sm-12 " *ngIf="category && category.type == 0">
   <app-post-list [posts]="posts"></app-post-list>
   <tools-page-nav *ngIf="total_nums > 5" [total_num]="total_nums" [per_num]="5" (cur_page_e)="onSelectPage($event)"></tools-page-nav>
 </div>
 
 <div class="category-chapter" *ngIf="category && category.type == 1">
   <app-category-chapter-posts [category]="category"></app-category-chapter-posts>
+</div>
+
 </div>

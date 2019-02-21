@@ -21,11 +21,12 @@
     "chapter":{
       "type": "integer",
       "description": "章",
-      "default": "normal"
+      "default": -1
     },
     "section": {
       "type": "integer",
-      "description": "节"
+      "description": "节",
+      "default": -1
     },
     "type": {
       "type": "string",

@@ -5,7 +5,9 @@
 <p>
   {{value | json}}
 </p>
-  <dl-date-time-picker [(ngModel)]="curtime"></dl-date-time-picker>
+  <form>
+   <input type="datetime-local" class="form-control" [(ngModel)]="post.publish_data" name="publish_data" id="publish_data">
 <button (click)="addPost(value)">保 存</button>
 <button (click)="onCancel(value)">取 消</button>
+</form>
 </div>

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import request, jsonify, current_app
 from flask_login import current_user
 from flask_mongoengine.wtf import  model_form
@@ -46,6 +48,9 @@ def post_comment(post_id):
         return jsonify(post.comments)
 
 
+def str2datetime(s):
+    return str(datetime.strptime(s, '%Y-%m-%dT%H:%M'))
+
 @api_bp.route('/post', methods = ['GET', 'POST'])
 def post():
     if request.method == 'GET':
@@ -76,7 +81,7 @@ def post():
             return jsonify('success.')
         user_name = data['author']
         author = User.objects(name=user_name).get()
-        data.update({'category': data['category']['$oid'], 'author': author.id})
+        data.update({'category': data['category']['$oid'], 'author': author.id, 'publish_data': str2datetime(data['publish_data'])})
         form = post_form(json2formdata(data))
         if form.validate():
             category_id = data['category']
@@ -85,7 +90,7 @@ def post():
             new_post.save()
             return jsonify('success.')
         else:
-            return jsonify('failed.')
+            return jsonify(form.errors), 400
 
 @api_bp.route('/post/<string:post_id>', methods = [ 'GET', 'PUT', 'DELETE' ])
 def post_post(post_id):

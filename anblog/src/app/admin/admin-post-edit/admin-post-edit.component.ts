@@ -28,7 +28,7 @@ export class AdminPostEditComponent implements OnInit {
         "enum": [
           c.name
         ]
-      })
+      });
     };
 
     if (this.post) {
@@ -47,7 +47,7 @@ export class AdminPostEditComponent implements OnInit {
 
   findCategoryIdByName(name: string): ObjectId {
     for (let c of this.categories) {
-      if (c.name == name) {
+      if (c.name === name) {
         return c._id;
       }
     }
@@ -77,8 +77,6 @@ export class AdminPostEditComponent implements OnInit {
 
   addPost(val) {
     this.val2post(val, this.post);
-    console.log(this.post.publish_data);
-    console.log('ccc',this.curtime);
     this.postService.addPost(this.post)
       .subscribe();
     this.editFlag.emit(1);
