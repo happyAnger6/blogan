@@ -5,6 +5,8 @@ import { PostService } from '../../services/post.service';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 import { ObjectId } from '../../models/objectid';
+import { AuthService } from '../../services/auth.service';
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-admin-post-edit',
@@ -17,8 +19,10 @@ export class AdminPostEditComponent implements OnInit {
   @Output() editFlag = new EventEmitter<number>();
   categories: Category[];
   curtime: any;
+  user: User;
   constructor(private postService: PostService,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private authService: AuthService) { }
 
   updateSchema() {
     let postArray: any[] = [];
@@ -29,7 +33,7 @@ export class AdminPostEditComponent implements OnInit {
           c.name
         ]
       });
-    };
+    }
 
     if (this.post) {
       this.postSchema.properties.category.oneOf = postArray;
@@ -42,6 +46,11 @@ export class AdminPostEditComponent implements OnInit {
       .subscribe(c => {
         this.categories = c;
         this.updateSchema();
+      });
+
+    this.authService.currentUser
+      .subscribe(u => {
+        this.user = u;
       });
   }
 
@@ -58,7 +67,7 @@ export class AdminPostEditComponent implements OnInit {
     post.type = this.iType2ModelType(value.type);
     post.showFlag = this.iFlag2ModelFlag(value.showFlag);
     post.category = this.findCategoryIdByName(value.category);
-    post.author = "admin";
+    post.author = this.user.name || 'anonymous';
     post.chapter = value.chapter;
     post.section = value.section;
   }
