@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 const HOST_URL="http://www.anger6.com";
-=======
-const HOST_URL = "http://www.anger6.com";
->>>>>>> f89cfb64fe6ba5792681f8d5686d40018b7c8994
 //const HOST_URL="http://192.168.1.10:5000";
 //const HOST_URL = "http://172.28.14.35:5000";
 const API_URL = HOST_URL + "/api";
