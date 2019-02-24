@@ -1,6 +1,10 @@
-<div *ngIf="messageService.messages.length">
-  <h4>Messages</h4>
-  <button class="clear"
-          (click)="messageService.clear()">clear</button>
-  <div *ngFor='let message of messageService.messages'> {{message}} </div>
+<div class="container" *ngIf="messageService.messages[4].length > 0">
+  <div class="col-md-2 col-sm-2">
+  <h5>消息</h5>
+</div>
+
+  <div *ngFor='let message of messageService.messages[4]' class="col-md-8 col-sm-2 alert alert-warning alert-dismissable" role="alert">
+    <p class="msg-content">{{message}}</p> </div>
+  <button class="btn-primary"
+          (click)="messageService.clear()">我知道了</button>
 </div>

@@ -44,7 +44,7 @@ export class CommentService {
   }
 
   private log(message: string) {
-    this.messageService.add(message);
+    this.messageService.info(message);
   }
 
   /**
@@ -66,7 +66,7 @@ export class CommentService {
           let errmsg: string = `${operation} failed: Server returned code ${error.status}, ` +
             `body was: ${error.error}`;
           console.error(errmsg);
-          this.log(errmsg);
+          this.messageService.error(errmsg);
         }
         // return an observable with a user-facing error message
         return throwError(
@@ -77,7 +77,7 @@ export class CommentService {
         console.error(error); // log to console instead
 
         // TODO: better job of transforming error for user consumption
-        this.log(`${operation} failed: ${error.message}`);
+        this.messageService.error(`${operation} failed: ${error.message}`);
 
         // Let the app keep running by returning an empty result.
         return of(result as T);

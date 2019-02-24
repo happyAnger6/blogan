@@ -51,6 +51,7 @@ import { SpyDirective } from './spy.directive';
 import { CategoryNormalPostsComponent } from './components/category-normal-posts/category-normal-posts.component';
 import { CategoryChapterPostsComponent } from './components/category-chapter-posts/category-chapter-posts.component';
 import { NavbarTabsComponent } from './components/navbar-tabs/navbar-tabs.component';
+import { ShowMsgComponent } from './components/show-msg/show-msg.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { NavbarTabsComponent } from './components/navbar-tabs/navbar-tabs.compon
     CategoryNormalPostsComponent,
     CategoryChapterPostsComponent,
     NavbarTabsComponent,
+    ShowMsgComponent,
   ],
   imports: [
     BsDropdownModule.forRoot(),
